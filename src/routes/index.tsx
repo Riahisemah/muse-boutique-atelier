@@ -1,24 +1,240 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link2, RefreshCw, ShieldCheck, Sparkles } from "lucide-react";
+import { Newsletter } from "@/components/Newsletter";
+import { ProductCard } from "@/components/ProductCard";
+import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
+import { CATEGORIES, PRODUCTS } from "@/data/products";
+import { useI18n } from "@/i18n";
+import heroImage from "@/assets/hero.jpg";
+import promoImage from "@/assets/promo.jpg";
+import storyImage from "@/assets/story.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Maison Noor — L'élégance qui parle pour vous | Robes de couture" },
+      {
+        name: "description",
+        content:
+          "Robes de soirée, de cérémonie et casual faites main en série limitée. Prix en EUR et TND, livraison en Tunisie, France et Italie.",
+      },
+      { property: "og:title", content: "Maison Noor — Robes de couture méditerranéennes" },
+      {
+        property: "og:description",
+        content:
+          "Découvrez nos robes faites main. Livraison Tunisie, France, Italie. Site en français, arabe et italien.",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
+  const { t, tl } = useI18n();
+  const newArrivals = PRODUCTS.filter((p) => p.newArrival).slice(0, 4);
+  const bestSellers = PRODUCTS.filter((p) => p.bestseller).slice(0, 4);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      {/* Hero */}
+      <section className="relative">
+        <div className="grid md:grid-cols-2">
+          <div className="flex items-center px-6 py-20 md:px-14 lg:px-20">
+            <div className="max-w-lg">
+              <p className="eyebrow animate-rise">{t("brand.tagline")}</p>
+              <h1
+                className="animate-rise mt-6 text-4xl leading-[1.05] sm:text-5xl lg:text-6xl"
+                style={{ animationDelay: "120ms" }}
+              >
+                {t("hero.title")}
+              </h1>
+              <p
+                className="animate-rise mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground"
+                style={{ animationDelay: "240ms" }}
+              >
+                {t("hero.subtitle")}
+              </p>
+              <div
+                className="animate-rise mt-10 flex flex-wrap gap-3"
+                style={{ animationDelay: "360ms" }}
+              >
+                <Link
+                  to="/shop"
+                  className="bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85"
+                >
+                  {t("hero.cta1")}
+                </Link>
+                <Link
+                  to="/shop"
+                  search={{ sort: "new" }}
+                  className="border border-foreground px-8 py-4 text-[11px] tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground"
+                >
+                  {t("hero.cta2")}
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="animate-soft-in relative overflow-hidden bg-secondary">
+            <img
+              src={heroImage}
+              alt={t("hero.title")}
+              width={1600}
+              height={1920}
+              className="h-[62vh] w-full object-cover object-top md:h-full md:min-h-[86vh]"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Trust bar */}
+      <section className="border-y border-border">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-6 px-6 py-8 md:grid-cols-4 md:px-8">
+          {[
+            { icon: Link2, label: t("trust.shipping") },
+            { icon: RefreshCw, label: t("trust.returns") },
+            { icon: ShieldCheck, label: t("trust.payment") },
+            { icon: Sparkles, label: t("trust.crafted") },
+          ].map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-3">
+              <Icon className="size-4 shrink-0 text-gold" />
+              <span className="text-[11px] tracking-[0.1em] text-muted-foreground uppercase">
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="mx-auto max-w-[1400px] px-6 py-20 md:px-8">
+        <SectionHeading
+          eyebrow={t("home.categories.subtitle")}
+          title={t("home.categories.title")}
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((c, i) => (
+            <Reveal key={c.slug} delay={i * 60}>
+              <Link
+                to="/category/$slug"
+                params={{ slug: c.slug }}
+                className="group relative block overflow-hidden bg-secondary"
+              >
+                <img
+                  src={c.image}
+                  alt={tl(c.name)}
+                  width={1000}
+                  height={1333}
+                  loading="lazy"
+                  className="aspect-[4/5] w-full object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/60 to-transparent p-6">
+                  <span className="font-display text-2xl text-primary-foreground">
+                    {tl(c.name)}
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* New arrivals */}
+      <section className="mx-auto max-w-[1400px] px-6 pb-20 md:px-8">
+        <SectionHeading
+          title={t("home.new.title")}
+          subtitle={t("home.new.subtitle")}
+          viewAllTo="/shop"
+        />
+        <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
+          {newArrivals.map((p, i) => (
+            <Reveal key={p.id} delay={i * 70}>
+              <ProductCard product={p} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Promotional banner */}
+      <section className="relative">
+        <img
+          src={promoImage}
+          alt={t("home.promo.title")}
+          width={1920}
+          height={1080}
+          loading="lazy"
+          className="h-[60vh] w-full object-cover"
+        />
+        <div className="absolute inset-0 flex items-center bg-foreground/25">
+          <div className="mx-auto w-full max-w-[1400px] px-6 md:px-8">
+            <Reveal className="max-w-md text-primary-foreground">
+              <p className="text-[11px] tracking-[0.22em] uppercase">{t("home.promo.eyebrow")}</p>
+              <h2 className="mt-4 text-4xl text-primary-foreground md:text-5xl">
+                {t("home.promo.title")}
+              </h2>
+              <p className="mt-4 text-sm">{t("home.promo.text")}</p>
+              <Link
+                to="/shop"
+                className="mt-8 inline-block bg-background px-8 py-4 text-[11px] tracking-[0.2em] text-foreground uppercase transition-opacity hover:opacity-85"
+              >
+                {t("home.promo.cta")}
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Best sellers */}
+      <section className="mx-auto max-w-[1400px] px-6 py-20 md:px-8">
+        <SectionHeading
+          title={t("home.best.title")}
+          subtitle={t("home.best.subtitle")}
+          viewAllTo="/shop"
+        />
+        <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
+          {bestSellers.map((p, i) => (
+            <Reveal key={p.id} delay={i * 70}>
+              <ProductCard product={p} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Brand story */}
+      <section className="border-y border-border bg-secondary/40">
+        <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-6 py-20 md:grid-cols-2 md:px-8">
+          <Reveal>
+            <img
+              src={storyImage}
+              alt={t("home.story.title")}
+              width={1400}
+              height={1600}
+              loading="lazy"
+              className="aspect-[7/8] w-full object-cover"
+            />
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="eyebrow">{t("home.story.eyebrow")}</p>
+            <h2 className="mt-4 text-3xl md:text-4xl">{t("home.story.title")}</h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+              {t("home.story.text")}
+            </p>
+            <Link to="/about" className="link-underline mt-8 inline-block text-xs tracking-[0.18em] uppercase">
+              {t("home.story.cta")}
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="mx-auto max-w-2xl px-6 py-24 text-center">
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl">{t("home.newsletter.title")}</h2>
+          <div className="mx-auto flex justify-center">
+            <Newsletter />
+          </div>
+        </Reveal>
+      </section>
+    </>
   );
 }
