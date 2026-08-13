@@ -39,11 +39,12 @@ function CategoryPage() {
   return (
     <div className="mx-auto max-w-[1400px] px-6 py-14 md:px-8">
       <h1 className="mb-10 text-4xl">{cat ? tl(cat.name) : slug}</h1>
-      <ShopBrowser
-        pool={pool}
-        initialCategory={isVirtual ? undefined : slug}
-        key={slug}
-      />
+      {isVirtual ? (
+        <ShopBrowser key={slug} pool={pool} />
+      ) : (
+        <ShopBrowser key={slug} pool={pool} initialCategory={slug} />
+      )}
+
     </div>
   );
 }
