@@ -294,6 +294,9 @@ function ProductPage() {
         </div>
       </div>
 
+      <ProductReviews product={product} />
+
+
       <section className="mt-24">
         <h2 className="mb-10 text-3xl">{t("product.similar")}</h2>
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
