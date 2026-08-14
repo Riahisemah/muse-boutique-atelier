@@ -104,7 +104,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       addToCart,
       updateQty,
       removeLine,
-      clearCart: () => setCart([]),
+      clearCart: () => {
+        setCart([]);
+        setPromoCode("");
+      },
       wishlist,
       toggleWishlist,
       isWished: (id: string) => wishlist.includes(id),
@@ -113,8 +116,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         setUser({ email, firstName: email.split("@")[0] ?? "", lastName: "" }),
 
       logout: () => setUser(null),
+      promoCode,
+      setPromoCode,
     };
-  }, [cart, wishlist, user, addToCart, updateQty, removeLine, toggleWishlist, setCart, setUser]);
+  }, [
+    cart,
+    wishlist,
+    user,
+    promoCode,
+    addToCart,
+    updateQty,
+    removeLine,
+    toggleWishlist,
+    setCart,
+    setUser,
+    setPromoCode,
+  ]);
+
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }
