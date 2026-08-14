@@ -52,6 +52,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = usePersisted<CartLine[]>("mn.cart", []);
   const [wishlist, setWishlist] = usePersisted<string[]>("mn.wishlist", []);
   const [user, setUser] = usePersisted<StoreValue["user"]>("mn.user", null);
+  const [promoCode, setPromoCode] = usePersisted<string>("mn.promo", "");
+
 
   const addToCart = useCallback(
     (line: CartLine) => {
