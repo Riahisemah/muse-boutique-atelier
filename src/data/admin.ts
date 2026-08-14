@@ -228,9 +228,10 @@ export const PROMOTIONS: Promotion[] = [
     type: "percent",
     value: 20,
     from: "2026-08-01",
-    to: "2026-09-30",
+    to: "2026-12-31",
     markets: ["FR", "IT", "TN"],
     active: true,
+    minSubtotal: 150,
   },
   {
     id: "pr2",
@@ -238,9 +239,10 @@ export const PROMOTIONS: Promotion[] = [
     type: "fixed",
     value: 50,
     from: "2026-08-05",
-    to: "2026-08-31",
+    to: "2026-12-31",
     markets: ["TN"],
     active: true,
+    minSubtotal: 200,
   },
   {
     id: "pr3",
@@ -252,7 +254,19 @@ export const PROMOTIONS: Promotion[] = [
     markets: ["IT"],
     active: false,
   },
+  {
+    id: "pr4",
+    code: "NOORPORT",
+    type: "freeShipping",
+    value: 0,
+    from: "2026-08-01",
+    to: "2026-12-31",
+    markets: ["FR", "IT", "TN"],
+    active: true,
+    minSubtotal: 120,
+  },
 ];
+
 
 export const REVENUE_BY_MONTH = [
   { month: "Mar", eur: 8200 },
