@@ -104,17 +104,42 @@ export type OrderStatus =
   | "cancelled"
   | "refunded";
 
+export interface OrderEvent {
+  status: OrderStatus;
+  date: string;
+  label: Localized;
+}
+
+export interface OrderLine {
+  name: string;
+  qty: number;
+  size: string;
+  /** unit price in the order currency */
+  unitPrice: number;
+}
+
 export interface Order {
   id: string;
   customer: string;
   email: string;
   market: MarketCode;
   currency: CurrencyCode;
-  items: { name: string; qty: number; size: string }[];
+  items: OrderLine[];
   total: number;
   paymentStatus: "pending" | "paid" | "refunded";
   status: OrderStatus;
   date: string;
+  /** shipping address block, used on the invoice */
+  address?: string;
+  shippingLabel?: Localized;
+  shippingCost?: number;
+  discount?: number;
+  customs?: number;
+  vat?: number;
+  carrier?: string;
+  trackingNumber?: string;
+  eta?: string;
+  timeline?: OrderEvent[];
 }
 
 export interface Customer {
@@ -131,10 +156,38 @@ export interface Customer {
 export interface Promotion {
   id: string;
   code: string;
-  type: "percent" | "fixed";
+  type: "percent" | "fixed" | "freeShipping";
   value: number;
   from: string;
   to: string;
   markets: MarketCode[];
   active: boolean;
+  /** minimum subtotal in base EUR */
+  minSubtotal?: number;
 }
+
+export interface TaxRule {
+  market: MarketCode;
+  /** VAT rate applied (prices are displayed VAT included) */
+  vatRate: number;
+  /** customs/duty rate applied on the goods value */
+  customsRate: number;
+  /** no customs below this amount (market currency) */
+  customsFreeUnder: number;
+  /** flat customs handling fee (market currency) */
+  customsHandling: number;
+}
+
+export interface Review {
+  id: string;
+  productId: string;
+  author: string;
+  market: MarketCode;
+  rating: number;
+  date: string;
+  title: string;
+  body: string;
+  size?: string;
+  verified: boolean;
+}
+
