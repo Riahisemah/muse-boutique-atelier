@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/i18n";
 import { MarketProvider } from "@/lib/markets";
 import { StoreProvider } from "@/lib/store";
+import { ReviewsProvider } from "@/lib/reviews";
+
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
