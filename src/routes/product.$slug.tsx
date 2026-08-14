@@ -16,6 +16,8 @@ import { useI18n } from "@/i18n";
 import { shippingFor, useMarket } from "@/lib/markets";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { ProductReviews } from "@/components/ProductReviews";
+
 
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
