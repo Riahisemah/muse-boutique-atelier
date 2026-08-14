@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Stars, StarPicker } from "@/components/Stars";
-import { useI18n } from "@/i18n";
+import { useTx } from "@/i18n/useTx";
 import { useMarket } from "@/lib/markets";
 import { useReviews } from "@/lib/reviews";
 import { cn } from "@/lib/utils";
@@ -9,19 +9,19 @@ import type { Product } from "@/types";
 
 export function RatingBadge({ productId, className }: { productId: string; className?: string }) {
   const { summary } = useReviews();
-  const { t } = useI18n();
+  const tx = useTx();
   const { count, average } = summary(productId);
   if (count === 0) return null;
   return (
     <span className={cn("inline-flex items-center gap-2 text-xs text-muted-foreground", className)}>
       <Stars rating={average} size={12} />
-      <span>{t("reviews.count", { count })}</span>
+      <span>{tx("reviews.count", { count })}</span>
     </span>
   );
 }
 
 export function ProductReviews({ product }: { product: Product }) {
-  const { t } = useI18n();
+  const tx = useTx();
   const { market } = useMarket();
   const { forProduct, summary, addReview } = useReviews();
   const reviews = forProduct(product.id);
@@ -37,7 +37,7 @@ export function ProductReviews({ product }: { product: Product }) {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!author.trim() || !body.trim()) {
-      toast.error(t("reviews.required"));
+      toast.error(tx("reviews.required"));
       return;
     }
     addReview({
@@ -45,7 +45,7 @@ export function ProductReviews({ product }: { product: Product }) {
       author: author.trim(),
       market: market.code,
       rating,
-      title: title.trim() || t("reviews.noTitle"),
+      title: title.trim() || tx("reviews.noTitle"),
       body: body.trim(),
       size,
     });
@@ -54,12 +54,12 @@ export function ProductReviews({ product }: { product: Product }) {
     setBody("");
     setRating(5);
     setOpen(false);
-    toast.success(t("reviews.thanks"));
+    toast.success(tx("reviews.thanks"));
   };
 
   return (
     <section className="mt-24 border-t border-border pt-16">
-      <h2 className="text-3xl">{t("reviews.title")}</h2>
+      <h2 className="text-3xl">{tx("reviews.title")}</h2>
 
       <div className="mt-8 grid gap-10 lg:grid-cols-[280px_1fr]">
         <div>
@@ -71,7 +71,7 @@ export function ProductReviews({ product }: { product: Product }) {
               </div>
               <Stars rating={average} size={18} className="mt-2" />
               <p className="mt-2 text-xs text-muted-foreground">
-                {t("reviews.based", { count })}
+                {tx("reviews.based", { count })}
               </p>
               <ul className="mt-6 space-y-1.5">
                 {[5, 4, 3, 2, 1].map((star) => {
@@ -92,7 +92,7 @@ export function ProductReviews({ product }: { product: Product }) {
               </ul>
             </>
           ) : (
-            <p className="text-sm text-muted-foreground">{t("reviews.empty")}</p>
+            <p className="text-sm text-muted-foreground">{tx("reviews.empty")}</p>
           )}
 
           <button
@@ -100,7 +100,7 @@ export function ProductReviews({ product }: { product: Product }) {
             onClick={() => setOpen((o) => !o)}
             className="mt-8 w-full border border-foreground py-3.5 text-[11px] tracking-[0.18em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground"
           >
-            {t("reviews.write")}
+            {tx("reviews.write")}
           </button>
         </div>
 
@@ -108,12 +108,12 @@ export function ProductReviews({ product }: { product: Product }) {
           {open && (
             <form onSubmit={submit} className="mb-10 space-y-5 border border-border p-6">
               <div>
-                <p className="eyebrow mb-2">{t("reviews.rating")}</p>
-                <StarPicker value={rating} onChange={setRating} label={t("reviews.rating")} />
+                <p className="eyebrow mb-2">{tx("reviews.rating")}</p>
+                <StarPicker value={rating} onChange={setRating} label={tx("reviews.rating")} />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="block">
-                  <span className="eyebrow">{t("reviews.name")}</span>
+                  <span className="eyebrow">{tx("reviews.name")}</span>
                   <input
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
@@ -121,7 +121,7 @@ export function ProductReviews({ product }: { product: Product }) {
                   />
                 </label>
                 <label className="block">
-                  <span className="eyebrow">{t("reviews.sizeWorn")}</span>
+                  <span className="eyebrow">{tx("reviews.sizeWorn")}</span>
                   <select
                     value={size}
                     onChange={(e) => setSize(e.target.value)}
@@ -136,7 +136,7 @@ export function ProductReviews({ product }: { product: Product }) {
                 </label>
               </div>
               <label className="block">
-                <span className="eyebrow">{t("reviews.titleField")}</span>
+                <span className="eyebrow">{tx("reviews.titleField")}</span>
                 <input
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -144,7 +144,7 @@ export function ProductReviews({ product }: { product: Product }) {
                 />
               </label>
               <label className="block">
-                <span className="eyebrow">{t("reviews.body")}</span>
+                <span className="eyebrow">{tx("reviews.body")}</span>
                 <textarea
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
@@ -156,7 +156,7 @@ export function ProductReviews({ product }: { product: Product }) {
                 type="submit"
                 className="bg-foreground px-8 py-3.5 text-[11px] tracking-[0.18em] text-primary-foreground uppercase"
               >
-                {t("reviews.submit")}
+                {tx("reviews.submit")}
               </button>
             </form>
           )}
@@ -169,14 +169,14 @@ export function ProductReviews({ product }: { product: Product }) {
                   <span className="text-sm">{r.title}</span>
                   {r.verified && (
                     <span className="border border-border px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase text-muted-foreground">
-                      {t("reviews.verified")}
+                      {tx("reviews.verified")}
                     </span>
                   )}
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
                 <p className="mt-3 text-xs text-muted-foreground">
                   {r.author} · {r.market} · {r.date}
-                  {r.size ? ` · ${t("reviews.sizeWorn")} ${r.size}` : ""}
+                  {r.size ? ` · ${tx("reviews.sizeWorn")} ${r.size}` : ""}
                 </p>
               </li>
             ))}
