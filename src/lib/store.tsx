@@ -17,6 +17,10 @@ interface StoreValue {
   user: { email: string; firstName: string; lastName: string } | null;
   login: (email: string) => void;
   logout: () => void;
+  /** promo code applied to the basket, shared between cart and checkout */
+  promoCode: string;
+  setPromoCode: (code: string) => void;
+
 }
 
 const StoreContext = createContext<StoreValue | null>(null);
