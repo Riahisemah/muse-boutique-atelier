@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { I18nProvider } from "@/i18n";
 import { MarketProvider } from "@/lib/markets";
 import { StoreProvider } from "@/lib/store";
+import { ReviewsProvider } from "@/lib/reviews";
+
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
@@ -130,16 +132,19 @@ function RootComponent() {
       <I18nProvider>
         <MarketProvider>
           <StoreProvider>
-            <div className="flex min-h-screen flex-col">
-              <SiteHeader />
-              <main className="flex-1">
-                {/* Required: nested routes render here. */}
-                <Outlet />
-              </main>
-              <SiteFooter />
-            </div>
-            <Toaster position="top-center" />
+            <ReviewsProvider>
+              <div className="flex min-h-screen flex-col">
+                <SiteHeader />
+                <main className="flex-1">
+                  {/* Required: nested routes render here. */}
+                  <Outlet />
+                </main>
+                <SiteFooter />
+              </div>
+              <Toaster position="top-center" />
+            </ReviewsProvider>
           </StoreProvider>
+
         </MarketProvider>
       </I18nProvider>
     </QueryClientProvider>

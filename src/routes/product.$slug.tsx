@@ -16,6 +16,8 @@ import { useI18n } from "@/i18n";
 import { shippingFor, useMarket } from "@/lib/markets";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
+import { ProductReviews } from "@/components/ProductReviews";
+
 
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
@@ -293,6 +295,9 @@ function ProductPage() {
           </Accordion>
         </div>
       </div>
+
+      <ProductReviews product={product} />
+
 
       <section className="mt-24">
         <h2 className="mb-10 text-3xl">{t("product.similar")}</h2>

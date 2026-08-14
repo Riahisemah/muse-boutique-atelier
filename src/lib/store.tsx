@@ -17,6 +17,10 @@ interface StoreValue {
   user: { email: string; firstName: string; lastName: string } | null;
   login: (email: string) => void;
   logout: () => void;
+  /** promo code applied to the basket, shared between cart and checkout */
+  promoCode: string;
+  setPromoCode: (code: string) => void;
+
 }
 
 const StoreContext = createContext<StoreValue | null>(null);
@@ -48,6 +52,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = usePersisted<CartLine[]>("mn.cart", []);
   const [wishlist, setWishlist] = usePersisted<string[]>("mn.wishlist", []);
   const [user, setUser] = usePersisted<StoreValue["user"]>("mn.user", null);
+  const [promoCode, setPromoCode] = usePersisted<string>("mn.promo", "");
+
 
   const addToCart = useCallback(
     (line: CartLine) => {
@@ -98,7 +104,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       addToCart,
       updateQty,
       removeLine,
-      clearCart: () => setCart([]),
+      clearCart: () => {
+        setCart([]);
+        setPromoCode("");
+      },
       wishlist,
       toggleWishlist,
       isWished: (id: string) => wishlist.includes(id),
@@ -107,8 +116,23 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         setUser({ email, firstName: email.split("@")[0] ?? "", lastName: "" }),
 
       logout: () => setUser(null),
+      promoCode,
+      setPromoCode,
     };
-  }, [cart, wishlist, user, addToCart, updateQty, removeLine, toggleWishlist, setCart, setUser]);
+  }, [
+    cart,
+    wishlist,
+    user,
+    promoCode,
+    addToCart,
+    updateQty,
+    removeLine,
+    toggleWishlist,
+    setCart,
+    setUser,
+    setPromoCode,
+  ]);
+
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }

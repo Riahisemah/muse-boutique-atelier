@@ -1,4 +1,35 @@
-import type { Customer, Order, Promotion } from "@/types";
+import type { Customer, Order, OrderEvent, OrderStatus, Promotion } from "@/types";
+
+const STEP_LABELS: Record<OrderStatus, OrderEvent["label"]> = {
+  pending: { fr: "Commande reçue", ar: "تم استلام الطلب", it: "Ordine ricevuto" },
+  paid: { fr: "Paiement confirmé", ar: "تم تأكيد الدفع", it: "Pagamento confermato" },
+  processing: { fr: "En préparation à l'atelier", ar: "قيد التجهيز في الورشة", it: "In preparazione" },
+  shipped: { fr: "Expédiée", ar: "تم الإرسال", it: "Spedito" },
+  delivered: { fr: "Livrée", ar: "تم التوصيل", it: "Consegnato" },
+  cancelled: { fr: "Annulée", ar: "ملغاة", it: "Annullato" },
+  refunded: { fr: "Remboursée", ar: "تم الاسترجاع", it: "Rimborsato" },
+};
+
+export const TRACKING_STEPS: OrderStatus[] = [
+  "pending",
+  "paid",
+  "processing",
+  "shipped",
+  "delivered",
+];
+
+export function stepLabel(status: OrderStatus) {
+  return STEP_LABELS[status];
+}
+
+function timeline(start: string, reached: OrderStatus[]): OrderEvent[] {
+  const base = new Date(start);
+  return reached.map((status, i) => {
+    const d = new Date(base);
+    d.setDate(d.getDate() + i);
+    return { status, date: d.toISOString().slice(0, 10), label: STEP_LABELS[status] };
+  });
+}
 
 export const ORDERS: Order[] = [
   {
@@ -7,11 +38,21 @@ export const ORDERS: Order[] = [
     email: "amira.bensalah@example.tn",
     market: "TN",
     currency: "TND",
-    items: [{ name: "Robe Nocturne", qty: 1, size: "M" }],
+    items: [{ name: "Robe Nocturne", qty: 1, size: "M", unitPrice: 806 }],
     total: 834,
     paymentStatus: "paid",
     status: "shipped",
     date: "2026-08-11",
+    address: "12 rue de Marseille, 1001 Tunis, Tunisie",
+    shippingLabel: { fr: "Livraison standard", ar: "توصيل عادي", it: "Spedizione standard" },
+    shippingCost: 28,
+    discount: 0,
+    customs: 0,
+    vat: 133,
+    carrier: "Aramex Tunisie",
+    trackingNumber: "ARX-TN-4471902",
+    eta: "2026-08-15",
+    timeline: timeline("2026-08-11", ["pending", "paid", "processing", "shipped"]),
   },
   {
     id: "MN-10420",
@@ -20,13 +61,23 @@ export const ORDERS: Order[] = [
     market: "FR",
     currency: "EUR",
     items: [
-      { name: "Robe Lumière", qty: 1, size: "S" },
-      { name: "Robe Riviera", qty: 1, size: "M" },
+      { name: "Robe Lumière", qty: 1, size: "S", unitPrice: 169 },
+      { name: "Robe Riviera", qty: 1, size: "M", unitPrice: 129 },
     ],
     total: 298,
     paymentStatus: "paid",
     status: "delivered",
     date: "2026-08-09",
+    address: "8 rue des Abbesses, 75018 Paris, France",
+    shippingLabel: { fr: "Livraison express", ar: "توصيل سريع", it: "Spedizione express" },
+    shippingCost: 0,
+    discount: 0,
+    customs: 0,
+    vat: 49.67,
+    carrier: "Colissimo",
+    trackingNumber: "6A-FR-88210347",
+    eta: "2026-08-12",
+    timeline: timeline("2026-08-09", ["pending", "paid", "processing", "shipped", "delivered"]),
   },
   {
     id: "MN-10419",
@@ -34,11 +85,21 @@ export const ORDERS: Order[] = [
     email: "giulia.rossi@example.it",
     market: "IT",
     currency: "EUR",
-    items: [{ name: "Abito Étoile", qty: 1, size: "L" }],
+    items: [{ name: "Abito Étoile", qty: 1, size: "L", unitPrice: 349 }],
     total: 389,
     paymentStatus: "pending",
     status: "pending",
     date: "2026-08-09",
+    address: "Via Solferino 14, 20121 Milano, Italia",
+    shippingLabel: { fr: "Livraison standard", ar: "توصيل عادي", it: "Spedizione standard" },
+    shippingCost: 7.9,
+    discount: 0,
+    customs: 32.1,
+    vat: 62.9,
+    carrier: "BRT",
+    trackingNumber: "BRT-IT-90277431",
+    eta: "2026-08-16",
+    timeline: timeline("2026-08-09", ["pending"]),
   },
   {
     id: "MN-10418",
@@ -46,11 +107,21 @@ export const ORDERS: Order[] = [
     email: "sonia.trabelsi@example.tn",
     market: "TN",
     currency: "TND",
-    items: [{ name: "Robe Plissé Ivoire", qty: 1, size: "M" }],
+    items: [{ name: "Robe Plissé Ivoire", qty: 1, size: "M", unitPrice: 1102 }],
     total: 1102,
     paymentStatus: "paid",
     status: "processing",
     date: "2026-08-07",
+    address: "34 avenue Habib Bourguiba, 4000 Sousse, Tunisie",
+    shippingLabel: { fr: "Livraison standard", ar: "توصيل عادي", it: "Spedizione standard" },
+    shippingCost: 0,
+    discount: 0,
+    customs: 0,
+    vat: 176,
+    carrier: "Aramex Tunisie",
+    trackingNumber: "ARX-TN-4470118",
+    eta: "2026-08-13",
+    timeline: timeline("2026-08-07", ["pending", "paid", "processing"]),
   },
   {
     id: "MN-10417",
@@ -58,11 +129,20 @@ export const ORDERS: Order[] = [
     email: "elise.moreau@example.fr",
     market: "FR",
     currency: "EUR",
-    items: [{ name: "Robe Carthage", qty: 1, size: "S" }],
+    items: [{ name: "Robe Carthage", qty: 1, size: "S", unitPrice: 289 }],
     total: 289,
     paymentStatus: "refunded",
     status: "refunded",
     date: "2026-08-04",
+    address: "21 quai de la Fosse, 44000 Nantes, France",
+    shippingLabel: { fr: "Livraison standard", ar: "توصيل عادي", it: "Spedizione standard" },
+    shippingCost: 0,
+    discount: 0,
+    customs: 0,
+    vat: 48.17,
+    carrier: "Colissimo",
+    trackingNumber: "6A-FR-88209912",
+    timeline: timeline("2026-08-04", ["pending", "paid", "refunded"]),
   },
   {
     id: "MN-10416",
@@ -70,13 +150,23 @@ export const ORDERS: Order[] = [
     email: "federica.conti@example.it",
     market: "IT",
     currency: "EUR",
-    items: [{ name: "Abito a Portafoglio Oliva", qty: 2, size: "M" }],
+    items: [{ name: "Abito a Portafoglio Oliva", qty: 2, size: "M", unitPrice: 139 }],
     total: 278,
     paymentStatus: "paid",
     status: "cancelled",
     date: "2026-08-02",
+    address: "Via Roma 88, 00184 Roma, Italia",
+    shippingLabel: { fr: "Livraison standard", ar: "توصيل عادي", it: "Spedizione standard" },
+    shippingCost: 7.9,
+    discount: 0,
+    customs: 0,
+    vat: 50.14,
+    carrier: "BRT",
+    trackingNumber: "BRT-IT-90277120",
+    timeline: timeline("2026-08-02", ["pending", "paid", "cancelled"]),
   },
 ];
+
 
 export const CUSTOMERS: Customer[] = [
   {
@@ -138,9 +228,10 @@ export const PROMOTIONS: Promotion[] = [
     type: "percent",
     value: 20,
     from: "2026-08-01",
-    to: "2026-09-30",
+    to: "2026-12-31",
     markets: ["FR", "IT", "TN"],
     active: true,
+    minSubtotal: 150,
   },
   {
     id: "pr2",
@@ -148,9 +239,10 @@ export const PROMOTIONS: Promotion[] = [
     type: "fixed",
     value: 50,
     from: "2026-08-05",
-    to: "2026-08-31",
+    to: "2026-12-31",
     markets: ["TN"],
     active: true,
+    minSubtotal: 200,
   },
   {
     id: "pr3",
@@ -162,7 +254,19 @@ export const PROMOTIONS: Promotion[] = [
     markets: ["IT"],
     active: false,
   },
+  {
+    id: "pr4",
+    code: "NOORPORT",
+    type: "freeShipping",
+    value: 0,
+    from: "2026-08-01",
+    to: "2026-12-31",
+    markets: ["FR", "IT", "TN"],
+    active: true,
+    minSubtotal: 120,
+  },
 ];
+
 
 export const REVENUE_BY_MONTH = [
   { month: "Mar", eur: 8200 },
