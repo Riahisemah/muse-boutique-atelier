@@ -74,5 +74,5 @@ export function clearOrderReference(): void {
  * Sends the admin notification and the client confirmation email.
  */
 export async function submitOrder(order: OrderRequest): Promise<void> {
-  await submitOrderEmail(order);
+  await submitOrderEmail({ data: order });
 }

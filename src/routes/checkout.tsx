@@ -75,6 +75,7 @@ function CheckoutPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof OrderFormValues, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [submitErrorDetail, setSubmitErrorDetail] = useState<string>("");
 
   const method = methods.find((m) => m.id === shippingId) ?? methods[0]!;
   const subtotalLocal = convert(subtotal);
@@ -190,7 +191,12 @@ function CheckoutPage() {
       saveOrderReference(orderNumber);
       clearCart();
       navigate({ to: "/order/confirmation" });
-    } catch {
+    } catch (error) {
+      const errMsg = error instanceof Error ? error.message : String(error);
+      const errStack = error instanceof Error ? error.stack : "no stack";
+      console.error("[checkout] submit error:", errMsg);
+      console.error("[checkout] submit stack:", errStack);
+      setSubmitErrorDetail(`${errMsg}\n\n${errStack}`);
       setSubmitError(true);
       setSubmitting(false);
     }
@@ -348,6 +354,11 @@ function CheckoutPage() {
           {submitError && (
             <div className="border border-destructive/30 bg-destructive/5 p-4 text-sm">
               <p>{t("checkout.error.submit")}</p>
+              {submitErrorDetail ? (
+                <pre className="mt-2 text-xs text-muted-foreground overflow-auto max-h-40 whitespace-pre-wrap font-mono">
+                  {submitErrorDetail}
+                </pre>
+              ) : null}
               <button
                 type="submit"
                 disabled={submitting}

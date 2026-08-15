@@ -4,19 +4,12 @@ import { sendOrderEmails } from "./orderMailer.server";
 import type { OrderRequest } from "./orderService";
 
 export const submitOrderEmail = createServerFn({ method: "POST" })
-  .handler(async (ctx: { data: OrderRequest }) => {
-    const data = ctx.data;
-    console.log("[orderMailer] handler received:", data?.orderNumber);
+  .handler(async ({ data }: { data: OrderRequest }) => {
+    console.log("[orderMailer] handler called, orderNumber:", data?.orderNumber);
     if (!data || !data.orderNumber) {
-      console.error("[orderMailer] Invalid data:", data);
-      throw new Error("Invalid order data received");
+      console.error("[orderMailer] bad data:", data);
+      throw new Error("Invalid order data");
     }
-    try {
-      await sendOrderEmails(data);
-      console.log("[orderMailer] emails sent");
-    } catch (error) {
-      console.error("[orderMailer] failed:", error);
-      throw error;
-    }
+    await sendOrderEmails(data);
     return { ok: true };
   });
