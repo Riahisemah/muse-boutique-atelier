@@ -22,8 +22,8 @@ import { ProductReviews } from "@/components/ProductReviews";
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const p = getProductBySlug(params.slug);
-    const title = p?.seo.title.fr ?? "Robe | Maison Noor";
-    const description = p?.seo.description.fr ?? "Robe faite main — Maison Noor.";
+    const title = p?.seo.title.fr ?? "Robe | El Wafa Création";
+    const description = p?.seo.description.fr ?? "Robe faite main — El Wafa Création.";
     return {
       meta: [
         { title },
@@ -92,7 +92,7 @@ function ProductPage() {
     <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-8">
       <nav className="mb-8 flex items-center gap-2 text-xs text-muted-foreground">
         <Link to="/" className="hover:text-foreground">
-          Noor
+          El Wafa
         </Link>
         <span>/</span>
         {category && (

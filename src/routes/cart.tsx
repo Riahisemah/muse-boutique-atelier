@@ -9,10 +9,10 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Panier | Maison Noor" },
+      { title: "Panier | El Wafa Création" },
       { name: "description", content: "Vérifiez votre sélection avant de passer commande." },
-      { property: "og:title", content: "Panier | Maison Noor" },
-      { property: "og:description", content: "Votre sélection Maison Noor." },
+      { property: "og:title", content: "Panier | El Wafa Création" },
+      { property: "og:description", content: "Votre sélection El Wafa Création." },
     ],
   }),
   component: CartPage,

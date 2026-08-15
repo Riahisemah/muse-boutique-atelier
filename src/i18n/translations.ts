@@ -9,8 +9,8 @@ export const LOCALES: { code: Locale; label: string; native: string; dir: "ltr" 
 type Dict = Record<string, string>;
 
 const fr: Dict = {
-  "brand.name": "Maison Noor",
-  "brand.tagline": "Maison de couture — Tunis · Paris · Milan",
+  "brand.name": "El Wafa Création",
+  "brand.tagline": "Couture & création sur mesure — Élégance sur mesure",
 
   "nav.shop": "Boutique",
   "nav.newArrivals": "Nouveautés",
@@ -222,8 +222,8 @@ const fr: Dict = {
 };
 
 const ar: Dict = {
-  "brand.name": "ميزون نور",
-  "brand.tagline": "دار خياطة — تونس · باريس · ميلانو",
+  "brand.name": "الوَفَاء",
+  "brand.tagline": "خياطة وتصميم على المقاس — الأناقة على قياسك",
 
   "nav.shop": "المتجر",
   "nav.newArrivals": "وصل حديثاً",
@@ -434,8 +434,8 @@ const ar: Dict = {
 };
 
 const it: Dict = {
-  "brand.name": "Maison Noor",
-  "brand.tagline": "Maison di alta moda — Tunisi · Parigi · Milano",
+  "brand.name": "El Wafa Création",
+  "brand.tagline": "Sartoria & creazioni su misura — Eleganza su misura",
 
   "nav.shop": "Shop",
   "nav.newArrivals": "Novità",

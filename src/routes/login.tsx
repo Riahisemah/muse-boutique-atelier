@@ -6,9 +6,9 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Connexion | Maison Noor" },
-      { name: "description", content: "Connectez-vous à votre espace client Maison Noor." },
-      { property: "og:title", content: "Connexion | Maison Noor" },
+      { title: "Connexion | El Wafa Création" },
+      { name: "description", content: "Connectez-vous à votre espace client El Wafa Création." },
+      { property: "og:title", content: "Connexion | El Wafa Création" },
       { property: "og:description", content: "Accédez à vos commandes et favoris." },
     ],
   }),

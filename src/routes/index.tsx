@@ -13,13 +13,13 @@ import storyImage from "@/assets/story.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Maison Noor — L'élégance qui parle pour vous | Robes de couture" },
+      { title: "El Wafa Création — L'élégance qui parle pour vous | Robes de couture" },
       {
         name: "description",
         content:
           "Robes de soirée, de cérémonie et casual faites main en série limitée. Prix en EUR et TND, livraison en Tunisie, France et Italie.",
       },
-      { property: "og:title", content: "Maison Noor — Robes de couture méditerranéennes" },
+      { property: "og:title", content: "El Wafa Création — Robes de couture méditerranéennes" },
       {
         property: "og:description",
         content:

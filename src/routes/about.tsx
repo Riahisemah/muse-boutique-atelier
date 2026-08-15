@@ -6,13 +6,13 @@ import storyImage from "@/assets/story.jpg";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "La Maison — Notre histoire de couture | Maison Noor" },
+      { title: "La Maison — Notre histoire de couture | El Wafa Création" },
       {
         name: "description",
         content:
-          "Maison Noor : un atelier méditerranéen, des tissus rares et des séries limitées entre Tunis, Paris et Milan.",
+          "El Wafa Création : un atelier méditerranéen, des tissus rares et des séries limitées entre Tunis, Paris et Milan.",
       },
-      { property: "og:title", content: "La Maison — Maison Noor" },
+      { property: "og:title", content: "La Maison — El Wafa Création" },
       { property: "og:description", content: "Une couture née en Méditerranée." },
     ],
   }),

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import logo from "@/assets/logo-elwafa.png";
 import { Heart, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
@@ -70,11 +71,14 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <Link
-            to="/"
-            className="flex-1 text-center font-display text-2xl tracking-[0.28em] uppercase md:flex-none"
-          >
-            Noor
+          <Link to="/" className="flex flex-1 justify-center md:flex-none" aria-label="El Wafa Création">
+            <img
+              src={logo}
+              alt="El Wafa Création"
+              width={1024}
+              height={1024}
+              className="h-12 w-auto md:h-14"
+            />
           </Link>
 
           <div className="flex flex-1 items-center justify-end gap-4">
@@ -126,7 +130,7 @@ export function SiteHeader() {
       {menuOpen && (
         <div className="animate-soft-in fixed inset-0 z-100 bg-background md:hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-4">
-            <span className="font-display text-xl tracking-[0.28em] uppercase">Noor</span>
+            <img src={logo} alt="El Wafa Création" width={1024} height={1024} className="h-10 w-auto" />
             <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close">
               <X className="size-5" />
             </button>

@@ -5,13 +5,13 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
-      { title: "Boutique — Robes de couture en série limitée | Maison Noor" },
+      { title: "Boutique — Robes de couture en série limitée | El Wafa Création" },
       {
         name: "description",
         content:
           "Parcourez toutes nos robes : soirée, cérémonie, casual. Filtrez par taille, couleur, prix et collection. Prix en EUR ou TND.",
       },
-      { property: "og:title", content: "Boutique Maison Noor" },
+      { property: "og:title", content: "Boutique El Wafa Création" },
       {
         property: "og:description",
         content: "Toutes nos robes faites main, filtrables par taille, couleur et collection.",

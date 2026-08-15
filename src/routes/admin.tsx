@@ -12,10 +12,10 @@ import type { Product } from "@/types";
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Administration | Maison Noor" },
+      { title: "Administration | El Wafa Création" },
       { name: "description", content: "Tableau de bord : produits, stock, commandes, clients, promotions." },
-      { property: "og:title", content: "Administration | Maison Noor" },
-      { property: "og:description", content: "Dashboard interne Maison Noor." },
+      { property: "og:title", content: "Administration | El Wafa Création" },
+      { property: "og:description", content: "Dashboard interne El Wafa Création." },
       { name: "robots", content: "noindex" },
     ],
   }),
