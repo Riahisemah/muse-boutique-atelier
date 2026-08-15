@@ -7,10 +7,10 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/wishlist")({
   head: () => ({
     meta: [
-      { title: "Mes favoris | Maison Noor" },
+      { title: "Mes favoris | El Wafa Création" },
       { name: "description", content: "Retrouvez les robes que vous avez sauvegardées." },
-      { property: "og:title", content: "Mes favoris | Maison Noor" },
-      { property: "og:description", content: "Vos robes favorites Maison Noor." },
+      { property: "og:title", content: "Mes favoris | El Wafa Création" },
+      { property: "og:description", content: "Vos robes favorites El Wafa Création." },
     ],
   }),
   component: WishlistPage,

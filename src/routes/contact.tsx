@@ -5,13 +5,13 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Service client | Maison Noor" },
+      { title: "Contact — Service client | El Wafa Création" },
       {
         name: "description",
         content: "Écrivez-nous : notre service client répond sous 24h en français, arabe et italien.",
       },
-      { property: "og:title", content: "Contact | Maison Noor" },
-      { property: "og:description", content: "Service client Maison Noor — réponse sous 24h." },
+      { property: "og:title", content: "Contact | El Wafa Création" },
+      { property: "og:description", content: "Service client El Wafa Création — réponse sous 24h." },
     ],
   }),
   component: ContactPage,
@@ -59,7 +59,7 @@ function ContactPage() {
         </button>
       </form>
       <div className="mt-12 space-y-1 text-sm text-muted-foreground">
-        <p>contact@maisonnoor.com</p>
+        <p>contact@elwafacreation.com</p>
         <p>Tunis · Paris · Milano</p>
       </div>
     </div>

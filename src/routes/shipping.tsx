@@ -5,13 +5,13 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/shipping")({
   head: () => ({
     meta: [
-      { title: "Livraison — Tunisie, France, Italie | Maison Noor" },
+      { title: "Livraison — Tunisie, France, Italie | El Wafa Création" },
       {
         name: "description",
         content:
           "Tarifs, délais et seuils de livraison gratuite pour la Tunisie, la France et l'Italie.",
       },
-      { property: "og:title", content: "Livraison | Maison Noor" },
+      { property: "og:title", content: "Livraison | El Wafa Création" },
       { property: "og:description", content: "Tarifs et délais par pays." },
     ],
   }),

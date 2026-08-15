@@ -4,13 +4,13 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Politique de confidentialité | Maison Noor" },
+      { title: "Politique de confidentialité | El Wafa Création" },
       {
         name: "description",
-        content: "Comment Maison Noor collecte, utilise et protège vos données personnelles.",
+        content: "Comment El Wafa Création collecte, utilise et protège vos données personnelles.",
       },
-      { property: "og:title", content: "Politique de confidentialité | Maison Noor" },
-      { property: "og:description", content: "Protection des données Maison Noor." },
+      { property: "og:title", content: "Politique de confidentialité | El Wafa Création" },
+      { property: "og:description", content: "Protection des données El Wafa Création." },
     ],
   }),
   component: PrivacyPage,
@@ -19,9 +19,9 @@ export const Route = createFileRoute("/privacy")({
 function PrivacyPage() {
   const { t, locale } = useI18n();
   const text = {
-    fr: "Nous collectons uniquement les données nécessaires au traitement de vos commandes : identité, coordonnées, adresse de livraison et historique d'achat. Ces données ne sont jamais revendues. Vous pouvez demander leur suppression à tout moment en écrivant à contact@maisonnoor.com.",
-    ar: "نجمع فقط البيانات اللازمة لمعالجة طلباتك: الهوية، بيانات الاتصال، عنوان التوصيل وسجل الشراء. لا نبيع هذه البيانات أبداً. يمكنك طلب حذفها في أي وقت عبر contact@maisonnoor.com.",
-    it: "Raccogliamo solo i dati necessari alla gestione degli ordini: identità, contatti, indirizzo di spedizione e storico acquisti. Questi dati non vengono mai rivenduti. Puoi chiederne la cancellazione scrivendo a contact@maisonnoor.com.",
+    fr: "Nous collectons uniquement les données nécessaires au traitement de vos commandes : identité, coordonnées, adresse de livraison et historique d'achat. Ces données ne sont jamais revendues. Vous pouvez demander leur suppression à tout moment en écrivant à contact@elwafacreation.com.",
+    ar: "نجمع فقط البيانات اللازمة لمعالجة طلباتك: الهوية، بيانات الاتصال، عنوان التوصيل وسجل الشراء. لا نبيع هذه البيانات أبداً. يمكنك طلب حذفها في أي وقت عبر contact@elwafacreation.com.",
+    it: "Raccogliamo solo i dati necessari alla gestione degli ordini: identità, contatti, indirizzo di spedizione e storico acquisti. Questi dati non vengono mai rivenduti. Puoi chiederne la cancellazione scrivendo a contact@elwafacreation.com.",
   } as const;
 
   return (

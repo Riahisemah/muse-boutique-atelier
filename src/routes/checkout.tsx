@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Commande | Maison Noor" },
+      { title: "Commande | El Wafa Création" },
       { name: "description", content: "Finalisez votre commande en quelques étapes." },
-      { property: "og:title", content: "Commande | Maison Noor" },
-      { property: "og:description", content: "Checkout sécurisé Maison Noor." },
+      { property: "og:title", content: "Commande | El Wafa Création" },
+      { property: "og:description", content: "Checkout sécurisé El Wafa Création." },
     ],
   }),
   component: CheckoutPage,

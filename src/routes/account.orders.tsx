@@ -5,9 +5,9 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/account/orders")({
   head: () => ({
     meta: [
-      { title: "Mes commandes | Maison Noor" },
-      { name: "description", content: "Suivez l'état de vos commandes Maison Noor." },
-      { property: "og:title", content: "Mes commandes | Maison Noor" },
+      { title: "Mes commandes | El Wafa Création" },
+      { name: "description", content: "Suivez l'état de vos commandes El Wafa Création." },
+      { property: "og:title", content: "Mes commandes | El Wafa Création" },
       { property: "og:description", content: "Historique et suivi de vos commandes." },
     ],
   }),

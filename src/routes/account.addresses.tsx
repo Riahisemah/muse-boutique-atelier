@@ -5,10 +5,10 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/account/addresses")({
   head: () => ({
     meta: [
-      { title: "Mes adresses | Maison Noor" },
+      { title: "Mes adresses | El Wafa Création" },
       { name: "description", content: "Gérez vos adresses de livraison et de facturation." },
-      { property: "og:title", content: "Mes adresses | Maison Noor" },
-      { property: "og:description", content: "Adresses de livraison Maison Noor." },
+      { property: "og:title", content: "Mes adresses | El Wafa Création" },
+      { property: "og:description", content: "Adresses de livraison El Wafa Création." },
     ],
   }),
   component: AddressesPage,

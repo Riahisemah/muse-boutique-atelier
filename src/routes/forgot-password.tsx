@@ -5,9 +5,9 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
-      { title: "Mot de passe oublié | Maison Noor" },
+      { title: "Mot de passe oublié | El Wafa Création" },
       { name: "description", content: "Réinitialisez le mot de passe de votre compte." },
-      { property: "og:title", content: "Mot de passe oublié | Maison Noor" },
+      { property: "og:title", content: "Mot de passe oublié | El Wafa Création" },
       { property: "og:description", content: "Réinitialisation du mot de passe." },
     ],
   }),

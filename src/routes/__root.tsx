@@ -83,13 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Maison Noor — Robes de couture | Tunisie, France, Italie" },
+      { title: "El Wafa Création — Robes de couture | Tunisie, France, Italie" },
       {
         name: "description",
         content:
-          "Maison Noor — robes de soirée, de cérémonie et du quotidien, faites main en série limitée. Livraison en Tunisie, France et Italie.",
+          "El Wafa Création — robes de soirée, de cérémonie et du quotidien, faites main en série limitée. Livraison en Tunisie, France et Italie.",
       },
-      { name: "author", content: "Maison Noor" },
+      { name: "author", content: "El Wafa Création" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -4,13 +4,13 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/returns")({
   head: () => ({
     meta: [
-      { title: "Retours & échanges sous 14 jours | Maison Noor" },
+      { title: "Retours & échanges sous 14 jours | El Wafa Création" },
       {
         name: "description",
         content: "Retours et échanges sous 14 jours pour toute pièce non portée, dans les trois marchés.",
       },
-      { property: "og:title", content: "Retours & échanges | Maison Noor" },
-      { property: "og:description", content: "Politique de retour Maison Noor." },
+      { property: "og:title", content: "Retours & échanges | El Wafa Création" },
+      { property: "og:description", content: "Politique de retour El Wafa Création." },
     ],
   }),
   component: ReturnsPage,

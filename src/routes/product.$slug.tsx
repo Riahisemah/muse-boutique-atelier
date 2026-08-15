@@ -22,8 +22,8 @@ import { ProductReviews } from "@/components/ProductReviews";
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const p = getProductBySlug(params.slug);
-    const title = p?.seo.title.fr ?? "Robe | Maison Noor";
-    const description = p?.seo.description.fr ?? "Robe faite main — Maison Noor.";
+    const title = p?.seo.title.fr ?? "Robe | El Wafa Création";
+    const description = p?.seo.description.fr ?? "Robe faite main — El Wafa Création.";
     return {
       meta: [
         { title },

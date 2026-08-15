@@ -6,10 +6,10 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Créer un compte | Maison Noor" },
+      { title: "Créer un compte | El Wafa Création" },
       { name: "description", content: "Créez votre compte pour suivre vos commandes et favoris." },
-      { property: "og:title", content: "Créer un compte | Maison Noor" },
-      { property: "og:description", content: "Rejoignez Maison Noor." },
+      { property: "og:title", content: "Créer un compte | El Wafa Création" },
+      { property: "og:description", content: "Rejoignez El Wafa Création." },
     ],
   }),
   component: RegisterPage,

@@ -120,9 +120,9 @@ export const PRODUCTS: Product[] = [
     details: details("Soie sablée", "حرير مطفي", "Seta sabbiata"),
     seo: {
       title: {
-        fr: "Robe de soirée Nocturne en soie noire | Maison Noor",
-        ar: "فستان سهرة نوكتورن من الحرير الأسود | ميزون نور",
-        it: "Abito da sera Nocturne in seta nera | Maison Noor",
+        fr: "Robe de soirée Nocturne en soie noire | El Wafa Création",
+        ar: "فستان سهرة نوكتورن من الحرير الأسود | الوَفَاء",
+        it: "Abito da sera Nocturne in seta nera | El Wafa Création",
       },
       description: {
         fr: "Robe longue en soie noire drapée à la main, série limitée. Livraison Tunisie, France, Italie.",
@@ -157,9 +157,9 @@ export const PRODUCTS: Product[] = [
     details: details("Satin de soie", "ساتان حريري", "Raso di seta"),
     seo: {
       title: {
-        fr: "Robe midi Lumière en satin beige | Maison Noor",
-        ar: "فستان ميدي لوميير من الساتان البيج | ميزون نور",
-        it: "Abito midi Lumière in raso beige | Maison Noor",
+        fr: "Robe midi Lumière en satin beige | El Wafa Création",
+        ar: "فستان ميدي لوميير من الساتان البيج | الوَفَاء",
+        it: "Abito midi Lumière in raso beige | El Wafa Création",
       },
       description: {
         fr: "Robe midi en satin au dos ouvert, coupe fluide, série limitée.",
@@ -195,9 +195,9 @@ export const PRODUCTS: Product[] = [
     details: details("Plissé technique", "بليسيه تقني", "Plissé tecnico"),
     seo: {
       title: {
-        fr: "Robe de cérémonie plissée ivoire | Maison Noor",
-        ar: "فستان مناسبات بليسيه عاجي | ميزون نور",
-        it: "Abito da cerimonia plissé avorio | Maison Noor",
+        fr: "Robe de cérémonie plissée ivoire | El Wafa Création",
+        ar: "فستان مناسبات بليسيه عاجي | الوَفَاء",
+        it: "Abito da cerimonia plissé avorio | El Wafa Création",
       },
       description: {
         fr: "Robe de cérémonie plissée, dos nu et traîne légère, faite main.",
@@ -232,9 +232,9 @@ export const PRODUCTS: Product[] = [
     details: details("Lin lavé", "كتان مغسول", "Lino lavato"),
     seo: {
       title: {
-        fr: "Robe midi Riviera en lin lavé | Maison Noor",
-        ar: "فستان ميدي ريفييرا من الكتان | ميزون نور",
-        it: "Abito midi Riviera in lino lavato | Maison Noor",
+        fr: "Robe midi Riviera en lin lavé | El Wafa Création",
+        ar: "فستان ميدي ريفييرا من الكتان | الوَفَاء",
+        it: "Abito midi Riviera in lino lavato | El Wafa Création",
       },
       description: {
         fr: "Robe midi en lin lavé avec poches, coupe décontractée et élégante.",
@@ -269,9 +269,9 @@ export const PRODUCTS: Product[] = [
     details: details("Viscose fluide", "فيسكوز انسيابي", "Viscosa fluida"),
     seo: {
       title: {
-        fr: "Robe portefeuille olive | Maison Noor",
-        ar: "فستان لفّة زيتوني | ميزون نور",
-        it: "Abito a portafoglio oliva | Maison Noor",
+        fr: "Robe portefeuille olive | El Wafa Création",
+        ar: "فستان لفّة زيتوني | الوَفَاء",
+        it: "Abito a portafoglio oliva | El Wafa Création",
       },
       description: {
         fr: "Robe portefeuille en viscose fluide, ceinture à nouer, coupe intemporelle.",
@@ -306,9 +306,9 @@ export const PRODUCTS: Product[] = [
     details: details("Tulle brodé sequins", "تول مطرّز بالترتر", "Tulle ricamato paillettes"),
     seo: {
       title: {
-        fr: "Robe longue à sequins dorés Étoile | Maison Noor",
-        ar: "فستان طويل بترتر ذهبي إتوال | ميزون نور",
-        it: "Abito lungo con paillettes dorate Étoile | Maison Noor",
+        fr: "Robe longue à sequins dorés Étoile | El Wafa Création",
+        ar: "فستان طويل بترتر ذهبي إتوال | الوَفَاء",
+        it: "Abito lungo con paillettes dorate Étoile | El Wafa Création",
       },
       description: {
         fr: "Robe longue brodée de sequins dorés, fente haute, pièce de soirée d'exception.",
@@ -343,9 +343,9 @@ export const PRODUCTS: Product[] = [
     details: details("Crêpe de soie", "كريب حريري", "Crêpe di seta"),
     seo: {
       title: {
-        fr: "Robe drapée Carthage une épaule | Maison Noor",
-        ar: "فستان قرطاج المدرّج بكتف واحد | ميزون نور",
-        it: "Abito drappeggiato Cartagine monospalla | Maison Noor",
+        fr: "Robe drapée Carthage une épaule | El Wafa Création",
+        ar: "فستان قرطاج المدرّج بكتف واحد | الوَفَاء",
+        it: "Abito drappeggiato Cartagine monospalla | El Wafa Création",
       },
       description: {
         fr: "Robe de cérémonie drapée à une épaule, plis sculptés à la main.",
@@ -380,9 +380,9 @@ export const PRODUCTS: Product[] = [
     details: details("Coton brodé", "قطن مطرّز", "Cotone ricamato"),
     seo: {
       title: {
-        fr: "Robe longue Médina en coton brodé | Maison Noor",
-        ar: "فستان المدينة الطويل من القطن المطرّز | ميزون نور",
-        it: "Abito lungo Medina in cotone ricamato | Maison Noor",
+        fr: "Robe longue Médina en coton brodé | El Wafa Création",
+        ar: "فستان المدينة الطويل من القطن المطرّز | الوَفَاء",
+        it: "Abito lungo Medina in cotone ricamato | El Wafa Création",
       },
       description: {
         fr: "Robe longue en coton brodé main, col montant, coupe ample.",

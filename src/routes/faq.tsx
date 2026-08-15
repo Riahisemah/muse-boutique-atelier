@@ -10,12 +10,12 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "FAQ — Livraison, tailles, retours | Maison Noor" },
+      { title: "FAQ — Livraison, tailles, retours | El Wafa Création" },
       {
         name: "description",
         content: "Réponses aux questions fréquentes : délais de livraison, tailles, retours, paiement.",
       },
-      { property: "og:title", content: "FAQ | Maison Noor" },
+      { property: "og:title", content: "FAQ | El Wafa Création" },
       { property: "og:description", content: "Livraison, tailles, retours et paiement." },
     ],
   }),

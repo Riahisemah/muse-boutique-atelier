@@ -9,7 +9,7 @@ export const LOCALES: { code: Locale; label: string; native: string; dir: "ltr" 
 type Dict = Record<string, string>;
 
 const fr: Dict = {
-  "brand.name": "Maison Noor",
+  "brand.name": "El Wafa Création",
   "brand.tagline": "Maison de couture — Tunis · Paris · Milan",
 
   "nav.shop": "Boutique",
@@ -222,7 +222,7 @@ const fr: Dict = {
 };
 
 const ar: Dict = {
-  "brand.name": "ميزون نور",
+  "brand.name": "الوَفَاء",
   "brand.tagline": "دار خياطة — تونس · باريس · ميلانو",
 
   "nav.shop": "المتجر",
@@ -434,7 +434,7 @@ const ar: Dict = {
 };
 
 const it: Dict = {
-  "brand.name": "Maison Noor",
+  "brand.name": "El Wafa Création",
   "brand.tagline": "Maison di alta moda — Tunisi · Parigi · Milano",
 
   "nav.shop": "Shop",

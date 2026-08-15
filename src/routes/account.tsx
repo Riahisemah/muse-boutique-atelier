@@ -8,10 +8,10 @@ import { useStore } from "@/lib/store";
 export const Route = createFileRoute("/account")({
   head: () => ({
     meta: [
-      { title: "Mon compte | Maison Noor" },
+      { title: "Mon compte | El Wafa Création" },
       { name: "description", content: "Gérez vos informations, commandes, adresses et favoris." },
-      { property: "og:title", content: "Mon compte | Maison Noor" },
-      { property: "og:description", content: "Espace client Maison Noor." },
+      { property: "og:title", content: "Mon compte | El Wafa Création" },
+      { property: "og:description", content: "Espace client El Wafa Création." },
     ],
   }),
   component: AccountPage,
