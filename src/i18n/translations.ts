@@ -10,7 +10,7 @@ type Dict = Record<string, string>;
 
 const fr: Dict = {
   "brand.name": "El Wafa Création",
-  "brand.tagline": "Maison de couture — Tunis · Paris · Milan",
+  "brand.tagline": "Couture \  "brand.tagline": "Maison de couture — Tunis · Paris · Milan", création sur mesure — Élégance sur mesure",
 
   "nav.shop": "Boutique",
   "nav.newArrivals": "Nouveautés",
@@ -223,7 +223,7 @@ const fr: Dict = {
 
 const ar: Dict = {
   "brand.name": "الوَفَاء",
-  "brand.tagline": "دار خياطة — تونس · باريس · ميلانو",
+  "brand.tagline": "خياطة وتصميم على المقاس — الأناقة على قياسك",
 
   "nav.shop": "المتجر",
   "nav.newArrivals": "وصل حديثاً",
@@ -435,7 +435,7 @@ const ar: Dict = {
 
 const it: Dict = {
   "brand.name": "El Wafa Création",
-  "brand.tagline": "Maison di alta moda — Tunisi · Parigi · Milano",
+  "brand.tagline": "Sartoria \  "brand.tagline": "Maison di alta moda — Tunisi · Parigi · Milano", creazioni su misura — Eleganza su misura",
 
   "nav.shop": "Shop",
   "nav.newArrivals": "Novità",
