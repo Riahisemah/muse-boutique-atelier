@@ -13,6 +13,9 @@ export default defineConfig({
     server: { entry: "server" },
   },
   nitro: {
+    // Deploy as Netlify Functions (SSR) instead of the Cloudflare preset
+    // used by the Lovable sandbox default.
+    preset: "netlify",
     // Serve pre-compressed gzip/brotli versions of static assets.
     compressPublicAssets: { gzip: true, brotli: true },
     routeRules: {

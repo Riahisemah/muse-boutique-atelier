@@ -1,0 +1,398 @@
+//#region node_modules/.nitro/vite/services/ssr/assets/admin-CR3sAx63.js
+var STEP_LABELS = {
+	pending: {
+		fr: "Commande reçue",
+		ar: "تم استلام الطلب",
+		it: "Ordine ricevuto"
+	},
+	paid: {
+		fr: "Paiement confirmé",
+		ar: "تم تأكيد الدفع",
+		it: "Pagamento confermato"
+	},
+	processing: {
+		fr: "En préparation à l'atelier",
+		ar: "قيد التجهيز في الورشة",
+		it: "In preparazione"
+	},
+	shipped: {
+		fr: "Expédiée",
+		ar: "تم الإرسال",
+		it: "Spedito"
+	},
+	delivered: {
+		fr: "Livrée",
+		ar: "تم التوصيل",
+		it: "Consegnato"
+	},
+	cancelled: {
+		fr: "Annulée",
+		ar: "ملغاة",
+		it: "Annullato"
+	},
+	refunded: {
+		fr: "Remboursée",
+		ar: "تم الاسترجاع",
+		it: "Rimborsato"
+	}
+};
+function timeline(start, reached) {
+	const base = new Date(start);
+	return reached.map((status, i) => {
+		const d = new Date(base);
+		d.setDate(d.getDate() + i);
+		return {
+			status,
+			date: d.toISOString().slice(0, 10),
+			label: STEP_LABELS[status]
+		};
+	});
+}
+var ORDERS = [
+	{
+		id: "MN-10421",
+		customer: "Amira Ben Salah",
+		email: "amira.bensalah@example.tn",
+		market: "TN",
+		currency: "TND",
+		items: [{
+			name: "Robe Nocturne",
+			qty: 1,
+			size: "M",
+			unitPrice: 806
+		}],
+		total: 834,
+		paymentStatus: "paid",
+		status: "shipped",
+		date: "2026-08-11",
+		address: "12 rue de Marseille, 1001 Tunis, Tunisie",
+		shippingLabel: {
+			fr: "Livraison standard",
+			ar: "توصيل عادي",
+			it: "Spedizione standard"
+		},
+		shippingCost: 28,
+		discount: 0,
+		customs: 0,
+		vat: 133,
+		carrier: "Aramex Tunisie",
+		trackingNumber: "ARX-TN-4471902",
+		eta: "2026-08-15",
+		timeline: timeline("2026-08-11", [
+			"pending",
+			"paid",
+			"processing",
+			"shipped"
+		])
+	},
+	{
+		id: "MN-10420",
+		customer: "Claire Dupont",
+		email: "claire.dupont@example.fr",
+		market: "FR",
+		currency: "EUR",
+		items: [{
+			name: "Robe Lumière",
+			qty: 1,
+			size: "S",
+			unitPrice: 169
+		}, {
+			name: "Robe Riviera",
+			qty: 1,
+			size: "M",
+			unitPrice: 129
+		}],
+		total: 298,
+		paymentStatus: "paid",
+		status: "delivered",
+		date: "2026-08-09",
+		address: "8 rue des Abbesses, 75018 Paris, France",
+		shippingLabel: {
+			fr: "Livraison express",
+			ar: "توصيل سريع",
+			it: "Spedizione express"
+		},
+		shippingCost: 0,
+		discount: 0,
+		customs: 0,
+		vat: 49.67,
+		carrier: "Colissimo",
+		trackingNumber: "6A-FR-88210347",
+		eta: "2026-08-12",
+		timeline: timeline("2026-08-09", [
+			"pending",
+			"paid",
+			"processing",
+			"shipped",
+			"delivered"
+		])
+	},
+	{
+		id: "MN-10419",
+		customer: "Giulia Rossi",
+		email: "giulia.rossi@example.it",
+		market: "IT",
+		currency: "EUR",
+		items: [{
+			name: "Abito Étoile",
+			qty: 1,
+			size: "L",
+			unitPrice: 349
+		}],
+		total: 389,
+		paymentStatus: "pending",
+		status: "pending",
+		date: "2026-08-09",
+		address: "Via Solferino 14, 20121 Milano, Italia",
+		shippingLabel: {
+			fr: "Livraison standard",
+			ar: "توصيل عادي",
+			it: "Spedizione standard"
+		},
+		shippingCost: 7.9,
+		discount: 0,
+		customs: 32.1,
+		vat: 62.9,
+		carrier: "BRT",
+		trackingNumber: "BRT-IT-90277431",
+		eta: "2026-08-16",
+		timeline: timeline("2026-08-09", ["pending"])
+	},
+	{
+		id: "MN-10418",
+		customer: "Sonia Trabelsi",
+		email: "sonia.trabelsi@example.tn",
+		market: "TN",
+		currency: "TND",
+		items: [{
+			name: "Robe Plissé Ivoire",
+			qty: 1,
+			size: "M",
+			unitPrice: 1102
+		}],
+		total: 1102,
+		paymentStatus: "paid",
+		status: "processing",
+		date: "2026-08-07",
+		address: "34 avenue Habib Bourguiba, 4000 Sousse, Tunisie",
+		shippingLabel: {
+			fr: "Livraison standard",
+			ar: "توصيل عادي",
+			it: "Spedizione standard"
+		},
+		shippingCost: 0,
+		discount: 0,
+		customs: 0,
+		vat: 176,
+		carrier: "Aramex Tunisie",
+		trackingNumber: "ARX-TN-4470118",
+		eta: "2026-08-13",
+		timeline: timeline("2026-08-07", [
+			"pending",
+			"paid",
+			"processing"
+		])
+	},
+	{
+		id: "MN-10417",
+		customer: "Élise Moreau",
+		email: "elise.moreau@example.fr",
+		market: "FR",
+		currency: "EUR",
+		items: [{
+			name: "Robe Carthage",
+			qty: 1,
+			size: "S",
+			unitPrice: 289
+		}],
+		total: 289,
+		paymentStatus: "refunded",
+		status: "refunded",
+		date: "2026-08-04",
+		address: "21 quai de la Fosse, 44000 Nantes, France",
+		shippingLabel: {
+			fr: "Livraison standard",
+			ar: "توصيل عادي",
+			it: "Spedizione standard"
+		},
+		shippingCost: 0,
+		discount: 0,
+		customs: 0,
+		vat: 48.17,
+		carrier: "Colissimo",
+		trackingNumber: "6A-FR-88209912",
+		timeline: timeline("2026-08-04", [
+			"pending",
+			"paid",
+			"refunded"
+		])
+	},
+	{
+		id: "MN-10416",
+		customer: "Federica Conti",
+		email: "federica.conti@example.it",
+		market: "IT",
+		currency: "EUR",
+		items: [{
+			name: "Abito a Portafoglio Oliva",
+			qty: 2,
+			size: "M",
+			unitPrice: 139
+		}],
+		total: 278,
+		paymentStatus: "paid",
+		status: "cancelled",
+		date: "2026-08-02",
+		address: "Via Roma 88, 00184 Roma, Italia",
+		shippingLabel: {
+			fr: "Livraison standard",
+			ar: "توصيل عادي",
+			it: "Spedizione standard"
+		},
+		shippingCost: 7.9,
+		discount: 0,
+		customs: 0,
+		vat: 50.14,
+		carrier: "BRT",
+		trackingNumber: "BRT-IT-90277120",
+		timeline: timeline("2026-08-02", [
+			"pending",
+			"paid",
+			"cancelled"
+		])
+	}
+];
+var CUSTOMERS = [
+	{
+		id: "c1",
+		name: "Amira Ben Salah",
+		email: "amira.bensalah@example.tn",
+		phone: "+216 55 214 880",
+		market: "TN",
+		orders: 6,
+		spent: 4210,
+		currency: "TND"
+	},
+	{
+		id: "c2",
+		name: "Claire Dupont",
+		email: "claire.dupont@example.fr",
+		phone: "+33 6 12 44 09 71",
+		market: "FR",
+		orders: 4,
+		spent: 1180,
+		currency: "EUR"
+	},
+	{
+		id: "c3",
+		name: "Giulia Rossi",
+		email: "giulia.rossi@example.it",
+		phone: "+39 340 771 2290",
+		market: "IT",
+		orders: 3,
+		spent: 940,
+		currency: "EUR"
+	},
+	{
+		id: "c4",
+		name: "Sonia Trabelsi",
+		email: "sonia.trabelsi@example.tn",
+		phone: "+216 98 337 112",
+		market: "TN",
+		orders: 2,
+		spent: 1890,
+		currency: "TND"
+	},
+	{
+		id: "c5",
+		name: "Federica Conti",
+		email: "federica.conti@example.it",
+		phone: "+39 328 550 1174",
+		market: "IT",
+		orders: 1,
+		spent: 278,
+		currency: "EUR"
+	}
+];
+var PROMOTIONS = [
+	{
+		id: "pr1",
+		code: "AUTOMNE20",
+		type: "percent",
+		value: 20,
+		from: "2026-08-01",
+		to: "2026-12-31",
+		markets: [
+			"FR",
+			"IT",
+			"TN"
+		],
+		active: true,
+		minSubtotal: 150
+	},
+	{
+		id: "pr2",
+		code: "TUNIS50",
+		type: "fixed",
+		value: 50,
+		from: "2026-08-05",
+		to: "2026-12-31",
+		markets: ["TN"],
+		active: true,
+		minSubtotal: 200
+	},
+	{
+		id: "pr3",
+		code: "MILANO10",
+		type: "percent",
+		value: 10,
+		from: "2026-06-01",
+		to: "2026-07-15",
+		markets: ["IT"],
+		active: false
+	},
+	{
+		id: "pr4",
+		code: "NOORPORT",
+		type: "freeShipping",
+		value: 0,
+		from: "2026-08-01",
+		to: "2026-12-31",
+		markets: [
+			"FR",
+			"IT",
+			"TN"
+		],
+		active: true,
+		minSubtotal: 120
+	}
+];
+var REVENUE_BY_MONTH = [
+	{
+		month: "Mar",
+		eur: 8200
+	},
+	{
+		month: "Avr",
+		eur: 10400
+	},
+	{
+		month: "Mai",
+		eur: 12800
+	},
+	{
+		month: "Juin",
+		eur: 15600
+	},
+	{
+		month: "Juil",
+		eur: 18900
+	},
+	{
+		month: "Août",
+		eur: 22400
+	}
+];
+var CUSTOMER_ORDERS = ORDERS.slice(0, 3);
+//#endregion
+export { REVENUE_BY_MONTH as a, PROMOTIONS as i, CUSTOMER_ORDERS as n, ORDERS as r, CUSTOMERS as t };
