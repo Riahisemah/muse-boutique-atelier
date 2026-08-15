@@ -4,6 +4,7 @@ import { Newsletter } from "@/components/Newsletter";
 import { LanguageSelector, MarketSelector } from "@/components/Selectors";
 import { CATEGORIES } from "@/data/products";
 import { useI18n } from "@/i18n";
+import logo from "@/assets/logo-elwafa.png";
 
 export function SiteFooter() {
   const { t, tl } = useI18n();
@@ -13,11 +14,27 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1400px] px-6 py-16 md:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <p className="font-display text-2xl tracking-[0.28em] uppercase">Noor</p>
+            <img
+              src={logo}
+              alt="El Wafa Création"
+              width={1024}
+              height={1024}
+              loading="lazy"
+              className="h-20 w-auto"
+            />
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">{t("brand.tagline")}</p>
+            <div className="mt-4 space-y-1 text-sm text-muted-foreground">
+              <p>+216 55 123 456</p>
+              <p>contact@elwafacreation.com</p>
+              <p>Tunis, Tunisie</p>
+            </div>
             <Newsletter compact />
             <div className="mt-6 flex items-center gap-4">
-              <a href="https://instagram.com" aria-label="Instagram" className="hover:opacity-60">
+              <a
+                href="https://instagram.com/elwafa_creation"
+                aria-label="Instagram @elwafa_creation"
+                className="hover:opacity-60"
+              >
                 <Instagram className="size-4" />
               </a>
               <a href="https://facebook.com" aria-label="Facebook" className="hover:opacity-60">

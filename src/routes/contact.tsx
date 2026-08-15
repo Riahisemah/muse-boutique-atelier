@@ -59,8 +59,10 @@ function ContactPage() {
         </button>
       </form>
       <div className="mt-12 space-y-1 text-sm text-muted-foreground">
+        <p>+216 55 123 456</p>
         <p>contact@elwafacreation.com</p>
-        <p>Tunis · Paris · Milano</p>
+        <p>Instagram : @elwafa_creation</p>
+        <p>Tunis, Tunisie · Livraison France &amp; Italie</p>
       </div>
     </div>
   );
