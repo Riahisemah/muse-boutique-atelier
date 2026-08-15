@@ -92,7 +92,7 @@ function ProductPage() {
     <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-8">
       <nav className="mb-8 flex items-center gap-2 text-xs text-muted-foreground">
         <Link to="/" className="hover:text-foreground">
-          Noor
+          El Wafa
         </Link>
         <span>/</span>
         {category && (
