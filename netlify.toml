@@ -1,0 +1,24 @@
+# El Wafa Création — Netlify deployment configuration
+#
+# The Nitro build (see vite.config.ts) generates:
+#   - dist/                         static assets (publish directory)
+#   - .netlify/functions-internal/  SSR server function (auto-detected by Netlify)
+#
+# Netlify detects bun.lock and runs `bun install` automatically before the
+# build command.
+
+[build]
+  command = "NODE_ENV=production bun run build"
+  publish = "dist"
+
+# Required environment variables (set them in the Netlify dashboard under
+# Site configuration > Environment variables). Do NOT commit secrets here.
+#
+#   SMTP_HOST=smtp.gmail.com
+#   SMTP_PORT=465
+#   SMTP_SECURE=true
+#   SMTP_USER=<your gmail address>
+#   SMTP_PASS=<gmail app password>
+#   SMTP_FROM_EMAIL=<sender address>
+#   SMTP_FROM_NAME=El Wafa Création
+#   ORDER_RECEIVER_EMAIL=<admin inbox that receives new orders>
