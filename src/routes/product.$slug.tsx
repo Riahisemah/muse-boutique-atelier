@@ -17,13 +17,15 @@ import { shippingFor, useMarket } from "@/lib/markets";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { ProductReviews } from "@/components/ProductReviews";
-
+import { absoluteUrl, breadcrumbSchema, ldScript } from "@/lib/seo";
 
 export const Route = createFileRoute("/product/$slug")({
   head: ({ params }) => {
     const p = getProductBySlug(params.slug);
     const title = p?.seo.title.fr ?? "Robe | El Wafa Création";
     const description = p?.seo.description.fr ?? "Robe faite main — El Wafa Création.";
+    const url = absoluteUrl(`/product/${params.slug}`);
+    const inStock = p?.sizes.some((s) => s.stock > 0) ?? false;
     return {
       meta: [
         { title },
@@ -31,6 +33,41 @@ export const Route = createFileRoute("/product/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "product" },
+        { property: "og:url", content: url },
+        {
+          property: "og:image",
+          content: p?.images[0] ? absoluteUrl(p.images[0]) : absoluteUrl("/og-image.jpg"),
+        },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        ...(p
+          ? [
+              ldScript({
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: p.name.fr,
+                description,
+                image: p.images.map((img) => absoluteUrl(img)),
+                sku: p.sku,
+                brand: { "@type": "Brand", name: "El Wafa Création" },
+                offers: {
+                  "@type": "Offer",
+                  url,
+                  price: p.price,
+                  priceCurrency: "EUR",
+                  availability: inStock
+                    ? "https://schema.org/InStock"
+                    : "https://schema.org/OutOfStock",
+                },
+              }),
+            ]
+          : []),
+        breadcrumbSchema([
+          { name: "Accueil", path: "/" },
+          { name: "Boutique", path: "/shop" },
+          { name: p?.name.fr ?? "Produit", path: `/product/${params.slug}` },
+        ]),
       ],
     };
   },
@@ -133,9 +170,19 @@ function ProductPage() {
                 key={img + i}
                 type="button"
                 onClick={() => setActiveImage(i)}
-                className={cn("w-20 border", i === activeImage ? "border-foreground" : "border-transparent")}
+                className={cn(
+                  "w-20 border",
+                  i === activeImage ? "border-foreground" : "border-transparent",
+                )}
               >
-                <img src={img} alt="" width={80} height={107} loading="lazy" className="aspect-[3/4] object-cover" />
+                <img
+                  src={img}
+                  alt=""
+                  width={80}
+                  height={107}
+                  loading="lazy"
+                  className="aspect-[3/4] object-cover"
+                />
               </button>
             ))}
           </div>
@@ -218,11 +265,19 @@ function ProductPage() {
 
           <div className="mt-8 flex items-center gap-4">
             <div className="flex items-center border border-border">
-              <button type="button" onClick={() => setQty((q) => Math.max(1, q - 1))} className="p-3">
+              <button
+                type="button"
+                onClick={() => setQty((q) => Math.max(1, q - 1))}
+                className="p-3"
+              >
                 <Minus className="size-3.5" />
               </button>
               <span className="w-10 text-center text-sm">{qty}</span>
-              <button type="button" onClick={() => setQty((q) => Math.min(10, q + 1))} className="p-3">
+              <button
+                type="button"
+                onClick={() => setQty((q) => Math.min(10, q + 1))}
+                className="p-3"
+              >
                 <Plus className="size-3.5" />
               </button>
             </div>
@@ -237,19 +292,26 @@ function ProductPage() {
           </div>
 
           <div className="mt-4 flex flex-col gap-2">
+            {sizeStock > 0 && sizeStock <= 2 && (
+              <p className="text-xs text-red-600 font-semibold">
+                ⚡ {t("product.lowStock")} — {t("product.sale")} limitée
+              </p>
+            )}
             <button
               type="button"
               onClick={() => add()}
-              className="bg-foreground py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85"
+              disabled={!size}
+              className="bg-foreground py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85 disabled:opacity-50"
             >
-              {t("product.addToCart")}
+              ✓ {t("product.addToCart")}
             </button>
             <button
               type="button"
               onClick={() => add(true)}
-              className="border border-foreground py-4 text-[11px] tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground"
+              disabled={!size}
+              className="border-2 border-foreground bg-background py-4 text-[11px] tracking-[0.2em] uppercase font-semibold transition-colors hover:bg-foreground hover:text-primary-foreground disabled:opacity-50"
             >
-              {t("product.buyNow")}
+              🛍️ {t("product.buyNow")}
             </button>
           </div>
 
@@ -257,11 +319,16 @@ function ProductPage() {
             {methods.map((m) => (
               <p key={m.id} className="flex items-center gap-2">
                 <Truck className="size-3.5" />
-                {tl(m.label)} — {tl(m.eta)} · {m.price === 0 ? t("cart.free") : format(m.price / market.rate)}
-                {m.freeOver ? ` · ${t("cart.freeHint", { amount: `${m.freeOver} ${market.currency}` })}` : ""}
+                {tl(m.label)} — {tl(m.eta)} ·{" "}
+                {m.price === 0 ? t("cart.free") : format(m.price / market.rate)}
+                {m.freeOver
+                  ? ` · ${t("cart.freeHint", { amount: `${m.freeOver} ${market.currency}` })}`
+                  : ""}
               </p>
             ))}
-            <p>{t("product.sku")}: {product.sku}</p>
+            <p>
+              {t("product.sku")}: {product.sku}
+            </p>
           </div>
 
           <Accordion type="single" collapsible className="mt-6">
@@ -297,7 +364,6 @@ function ProductPage() {
       </div>
 
       <ProductReviews product={product} />
-
 
       <section className="mt-24">
         <h2 className="mb-10 text-3xl">{t("product.similar")}</h2>

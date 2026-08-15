@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { useI18n } from "@/i18n";
-import storyImage from "@/assets/story.jpg";
+import storyImage from "@/assets/story.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

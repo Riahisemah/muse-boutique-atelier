@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ShopBrowser } from "@/components/ShopBrowser";
 import { CATEGORIES, PRODUCTS } from "@/data/products";
 import { useI18n } from "@/i18n";
+import { absoluteUrl, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/category/$slug")({
   head: ({ params }) => {
@@ -10,12 +11,22 @@ export const Route = createFileRoute("/category/$slug")({
     const description = cat
       ? `Découvrez notre sélection de ${cat.name.fr.toLowerCase()} faites main. Livraison Tunisie, France, Italie.`
       : "Découvrez nos robes faites main.";
+    const url = absoluteUrl(`/category/${params.slug}`);
     return {
       meta: [
         { title },
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        breadcrumbSchema([
+          { name: "Accueil", path: "/" },
+          { name: "Boutique", path: "/shop" },
+          { name: cat?.name.fr ?? "Catégorie", path: `/category/${params.slug}` },
+        ]),
       ],
     };
   },

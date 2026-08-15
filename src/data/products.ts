@@ -1,10 +1,10 @@
 import type { Category, Collection, Product } from "@/types";
-import dress1 from "@/assets/dress-1.jpg";
-import dress2 from "@/assets/dress-2.jpg";
-import dress3 from "@/assets/dress-3.jpg";
-import dress4 from "@/assets/dress-4.jpg";
-import dress5 from "@/assets/dress-5.jpg";
-import dress6 from "@/assets/dress-6.jpg";
+import dress1 from "@/assets/dress-1.webp";
+import dress2 from "@/assets/dress-2.webp";
+import dress3 from "@/assets/dress-3.webp";
+import dress4 from "@/assets/dress-4.webp";
+import dress5 from "@/assets/dress-5.webp";
+import dress6 from "@/assets/dress-6.webp";
 
 export const IMAGES = { dress1, dress2, dress3, dress4, dress5, dress6 };
 
@@ -388,6 +388,81 @@ export const PRODUCTS: Product[] = [
         fr: "Robe longue en coton brodé main, col montant, coupe ample.",
         ar: "فستان طويل من القطن المطرّز يدوياً بياقة عالية وقصّة واسعة.",
         it: "Abito lungo in cotone ricamato a mano, collo alto, linea ampia.",
+      },
+    },
+  },
+  {
+    id: "p9",
+    slug: "robe-dentelle-isabelle",
+    sku: "MN-SOI-009",
+    name: { fr: "Robe Isabelle", ar: "فستان إيزابيل", it: "Abito Isabelle" },
+    description: {
+      fr: "Robe de soirée en dentelle délicate, col asymétrique, manches bouffantes. Un classique réinventé avec élégance.",
+      ar: "فستان سهرة من الدانتيل الرقيق، ياقة غير متماثلة وأكمام منفوخة. كلاسيكي أعيد اختراعه بأناقة.",
+      it: "Abito da sera in pizzo delicato, colletto asimmetrico e maniche a sbuffo. Un classico reinventato con eleganza.",
+    },
+    category: "soiree",
+    collection: "lumiere",
+    images: [dress2, dress6],
+    price: 269,
+    compareAt: 340,
+    promoEndsAt: "2026-09-25",
+    colors: [COLORS.ivory, COLORS.black],
+    sizes: sizes(4, 6, 3, 1),
+    status: "published",
+    featured: true,
+    bestseller: false,
+    newArrival: true,
+    popularity: 85,
+    createdAt: "2026-08-10",
+    details: details("Dentelle française", "دانتيل فرنسي", "Pizzo francese"),
+    seo: {
+      title: {
+        fr: "Robe de soirée Isabelle en dentelle | El Wafa Création",
+        ar: "فستان سهرة إيزابيل من الدانتيل | الوَفَاء",
+        it: "Abito da sera Isabelle in pizzo | El Wafa Création",
+      },
+      description: {
+        fr: "Robe de soirée en dentelle délicate, col asymétrique, série limitée.",
+        ar: "فستان سهرة من الدانتيل الرقيق بياقة غير متماثلة، كمية محدودة.",
+        it: "Abito da sera in pizzo delicato con colletto asimmetrico, serie limitata.",
+      },
+    },
+  },
+  {
+    id: "p10",
+    slug: "robe-velours-renaissance",
+    sku: "MN-CER-010",
+    name: { fr: "Robe Renaissance", ar: "فستان الحضارة", it: "Abito Rinascimento" },
+    description: {
+      fr: "Robe de cérémonie en velours côtelé noir, ceinture dorée, découpe sophistiquée. Inspirée par l'art de la Renaissance.",
+      ar: "فستان مناسبات من المخمل الأسود، حزام ذهبي وقصّة متطورة. مستوحى من فن الحضارة.",
+      it: "Abito da cerimonia in velluto nero, cintura dorata e linea sofisticata. Ispirato dall'arte del Rinascimento.",
+    },
+    category: "ceremonie",
+    collection: "atelier-noir",
+    images: [dress3, dress2],
+    price: 349,
+    compareAt: 439,
+    colors: [COLORS.black, COLORS.gold],
+    sizes: sizes(1, 5, 4, 3),
+    status: "published",
+    featured: true,
+    bestseller: false,
+    newArrival: true,
+    popularity: 79,
+    createdAt: "2026-08-12",
+    details: details("Velours côtelé", "مخمل منقوش", "Velluto a coste"),
+    seo: {
+      title: {
+        fr: "Robe de cérémonie Renaissance en velours | El Wafa Création",
+        ar: "فستان مناسبات الحضارة من المخمل | الوَفَاء",
+        it: "Abito da cerimonia Rinascimento in velluto | El Wafa Création",
+      },
+      description: {
+        fr: "Robe de cérémonie en velours côtelé noir, ceinture dorée, pièce d'exception.",
+        ar: "فستان مناسبات من المخمل الأسود بحزام ذهبي، قطعة استثنائية.",
+        it: "Abito da cerimonia in velluto nero con cintura dorata, capo d'eccezione.",
       },
     },
   },

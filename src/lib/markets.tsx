@@ -87,21 +87,24 @@ export const SHIPPING: MarketShipping[] = [
   },
 ];
 
-/** Payment provider layer — new providers plug in here, never in components. */
+/**
+ * Payment provider layer — disabled during email-order launch phase.
+ * Re-enable entries here when integrating Stripe or other providers.
+ */
 export const PAYMENT_METHODS: PaymentMethod[] = [
   {
     id: "card",
     provider: "stripe",
     label: { fr: "Carte bancaire", ar: "بطاقة بنكية", it: "Carta di credito" },
     markets: ["FR", "IT"],
-    enabled: true,
+    enabled: false,
   },
   {
     id: "wallet",
     provider: "stripe",
     label: { fr: "Apple Pay / Google Pay", ar: "Apple Pay / Google Pay", it: "Apple Pay / Google Pay" },
     markets: ["FR", "IT"],
-    enabled: true,
+    enabled: false,
   },
   {
     id: "cod",
@@ -112,14 +115,14 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
       it: "Pagamento alla consegna",
     },
     markets: ["TN"],
-    enabled: true,
+    enabled: false,
   },
   {
     id: "transfer",
     provider: "bank_transfer",
     label: { fr: "Virement bancaire", ar: "تحويل بنكي", it: "Bonifico bancario" },
     markets: ["TN"],
-    enabled: true,
+    enabled: false,
   },
 ];
 

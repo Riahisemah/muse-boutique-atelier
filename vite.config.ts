@@ -12,4 +12,24 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Serve pre-compressed gzip/brotli versions of static assets.
+    compressPublicAssets: { gzip: true, brotli: true },
+    routeRules: {
+      "/**": {
+        headers: {
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "DENY",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
+          "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        },
+      },
+    },
+  } as {
+    preset?: string;
+    output?: { dir?: string; publicDir?: string; serverDir?: string };
+    cloudflare?: { nodeCompat?: boolean; deployConfig?: boolean };
+    compressPublicAssets?: { gzip?: boolean; brotli?: boolean };
+    routeRules?: Record<string, unknown>;
+  },
 });

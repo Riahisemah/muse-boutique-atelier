@@ -15,6 +15,7 @@ import { I18nProvider } from "@/i18n";
 import { MarketProvider } from "@/lib/markets";
 import { StoreProvider } from "@/lib/store";
 import { ReviewsProvider } from "@/lib/reviews";
+import { SITE_URL, absoluteUrl, ldScript } from "@/lib/seo";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -91,7 +92,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "El Wafa Création" },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "El Wafa Création" },
+      { property: "og:image", content: absoluteUrl("/og-image.jpg") },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/jpeg" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: absoluteUrl("/og-image.jpg") },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -103,6 +110,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
+    scripts: [
+      ldScript({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "El Wafa Création",
+        url: SITE_URL,
+        logo: absoluteUrl("/og-image.jpg"),
+        description:
+          "Robes de soirée, de cérémonie et casual faites main en série limitée. Livraison en Tunisie, France et Italie.",
+        address: { "@type": "PostalAddress", addressCountry: "TN", addressLocality: "Tunis" },
+      }),
+      {
+        children: `(function(){try{var s=localStorage.getItem("mn.locale")||(navigator.language||"fr").slice(0,2).toLowerCase();var l=["ar","it"].includes(s)?s:"fr";document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";}catch(e){}})();`,
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -112,7 +134,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" dir="ltr">
       <head>
         <HeadContent />
       </head>

@@ -33,12 +33,21 @@ function CartPage() {
       <div className="mx-auto max-w-xl px-6 py-32 text-center">
         <h1 className="text-4xl">{t("cart.title")}</h1>
         <p className="mt-4 text-sm text-muted-foreground">{t("cart.empty")}</p>
-        <Link
-          to="/shop"
-          className="mt-8 inline-block bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase"
-        >
-          {t("cart.continue")}
-        </Link>
+        <div className="mt-8 space-y-3">
+          <Link
+            to="/shop"
+            className="block bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase font-semibold"
+          >
+            🛍️ {t("cart.continue")}
+          </Link>
+          <Link
+            to="/shop"
+            search={{ sort: "best" }}
+            className="block border-2 border-foreground px-8 py-4 text-[11px] tracking-[0.2em] uppercase font-semibold hover:bg-foreground hover:text-primary-foreground"
+          >
+            ⭐ Voir les bestsellers
+          </Link>
+        </div>
       </div>
     );
   }
@@ -46,6 +55,23 @@ function CartPage() {
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-14 md:px-8">
       <h1 className="mb-10 text-4xl">{t("cart.title")}</h1>
+
+      {/* Free shipping message */}
+      {!freeShipping && method.freeOver !== null && (
+        <div className="mb-8 bg-background/80 border border-gold/30 p-4 text-center text-sm">
+          <p className="text-foreground font-semibold">
+            🎁{" "}
+            {t("cart.freeHint", {
+              amount: `${format(method.freeOver / market.rate)} ${market.currency}`,
+            })}
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            {t("cart.subtotal")}:{" "}
+            <span className="font-semibold text-foreground">{format(subtotalLocal)}</span>
+          </p>
+        </div>
+      )}
+
       <div className="grid gap-12 lg:grid-cols-[1fr_360px]">
         <ul className="divide-y divide-border">
           {cart.map((line, i) => {
@@ -53,7 +79,10 @@ function CartPage() {
             if (!p) return null;
             const color = p.colors.find((c) => c.id === line.colorId);
             return (
-              <li key={`${line.productId}-${line.size}-${line.colorId}`} className="flex gap-4 py-6">
+              <li
+                key={`${line.productId}-${line.size}-${line.colorId}`}
+                className="flex gap-4 py-6"
+              >
                 <Link to="/product/$slug" params={{ slug: p.slug }} className="shrink-0">
                   <img
                     src={p.images[0]}
@@ -84,15 +113,26 @@ function CartPage() {
                   </div>
                   <div className="mt-4 flex items-center justify-between">
                     <div className="flex items-center border border-border">
-                      <button type="button" onClick={() => updateQty(i, line.qty - 1)} className="p-2">
+                      <button
+                        type="button"
+                        onClick={() => updateQty(i, line.qty - 1)}
+                        className="p-2"
+                      >
                         <Minus className="size-3" />
                       </button>
                       <span className="w-8 text-center text-sm">{line.qty}</span>
-                      <button type="button" onClick={() => updateQty(i, line.qty + 1)} className="p-2">
+                      <button
+                        type="button"
+                        onClick={() => updateQty(i, line.qty + 1)}
+                        className="p-2"
+                      >
                         <Plus className="size-3" />
                       </button>
                     </div>
-                    <Price price={p.price * line.qty} compareAt={p.compareAt ? p.compareAt * line.qty : null} />
+                    <Price
+                      price={p.price * line.qty}
+                      compareAt={p.compareAt ? p.compareAt * line.qty : null}
+                    />
                   </div>
                 </div>
               </li>

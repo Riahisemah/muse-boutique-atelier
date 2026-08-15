@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    container_name: muse-boutique-atelier-dev
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    volumes:
+      # Source is mounted so every edit is picked up in real time (HMR).
+      - .:/app
+      # Keep the container's installed node_modules (ignores the host folder).
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+    env_file:
+      - .env

@@ -1,14 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Link2, RefreshCw, ShieldCheck, Sparkles } from "lucide-react";
+import { Link2, Phone, RefreshCw, Sparkles } from "lucide-react";
 import { Newsletter } from "@/components/Newsletter";
 import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CATEGORIES, PRODUCTS } from "@/data/products";
 import { useI18n } from "@/i18n";
-import heroImage from "@/assets/hero.jpg";
-import promoImage from "@/assets/promo.jpg";
-import storyImage from "@/assets/story.jpg";
+import heroImage from "@/assets/hero.webp";
+import promoImage from "@/assets/promo.webp";
+import storyImage from "@/assets/story.webp";
+import { absoluteUrl } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,7 +26,9 @@ export const Route = createFileRoute("/")({
         content:
           "Découvrez nos robes faites main. Livraison Tunisie, France, Italie. Site en français, arabe et italien.",
       },
+      { property: "og:url", content: absoluteUrl("/") },
     ],
+    links: [{ rel: "canonical", href: absoluteUrl("/") }],
   }),
   component: Home,
 });
@@ -61,16 +64,16 @@ function Home() {
               >
                 <Link
                   to="/shop"
-                  className="bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85"
+                  className="bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85 font-semibold"
                 >
-                  {t("hero.cta1")}
+                  🛍️ {t("hero.cta1")}
                 </Link>
                 <Link
                   to="/shop"
                   search={{ sort: "new" }}
-                  className="border border-foreground px-8 py-4 text-[11px] tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground"
+                  className="border border-foreground px-8 py-4 text-[11px] tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground font-semibold"
                 >
-                  {t("hero.cta2")}
+                  ✨ {t("hero.cta2")}
                 </Link>
               </div>
             </div>
@@ -88,12 +91,12 @@ function Home() {
       </section>
 
       {/* Trust bar */}
-      <section className="border-y border-border">
+      <section className="border-y border-border bg-background/50">
         <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-6 px-6 py-8 md:grid-cols-4 md:px-8">
           {[
             { icon: Link2, label: t("trust.shipping") },
             { icon: RefreshCw, label: t("trust.returns") },
-            { icon: ShieldCheck, label: t("trust.payment") },
+            { icon: Phone, label: t("trust.phone") },
             { icon: Sparkles, label: t("trust.crafted") },
           ].map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-3">
@@ -103,6 +106,24 @@ function Home() {
               </span>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Social proof section */}
+      <section className="mx-auto max-w-[1400px] px-6 py-16 md:px-8">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="text-center">
+            <p className="text-3xl font-bold text-foreground">+2500</p>
+            <p className="mt-2 text-sm text-muted-foreground">Clientes satisfaites</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl font-bold text-gold">⭐⭐⭐⭐⭐</p>
+            <p className="mt-2 text-sm text-muted-foreground">4.9/5 — Très satisfaites</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl font-bold text-foreground">98%</p>
+            <p className="mt-2 text-sm text-muted-foreground">Recommandent El Wafa</p>
+          </div>
         </div>
       </section>
 
@@ -219,7 +240,10 @@ function Home() {
             <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
               {t("home.story.text")}
             </p>
-            <Link to="/about" className="link-underline mt-8 inline-block text-xs tracking-[0.18em] uppercase">
+            <Link
+              to="/about"
+              className="link-underline mt-8 inline-block text-xs tracking-[0.18em] uppercase"
+            >
               {t("home.story.cta")}
             </Link>
           </Reveal>

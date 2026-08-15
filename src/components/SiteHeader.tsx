@@ -39,8 +39,8 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="bg-foreground py-2 text-center text-[10px] tracking-[0.2em] text-primary-foreground uppercase">
-        {t("trust.shipping")}
+      <div className="bg-gold/10 py-2 text-center text-[10px] tracking-[0.2em] text-gold uppercase font-semibold">
+        ✨ {t("trust.shipping")} — 🎁 {t("cart.free")} {t("cart.shipping")} à partir de 100 EUR
       </div>
 
       <header
@@ -71,7 +71,11 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <Link to="/" className="flex flex-1 justify-center md:flex-none" aria-label="El Wafa Création">
+          <Link
+            to="/"
+            className="flex flex-1 justify-center md:flex-none"
+            aria-label="El Wafa Création"
+          >
             <img
               src={logo}
               alt="El Wafa Création"
@@ -89,7 +93,11 @@ export function SiteHeader() {
             <button type="button" onClick={() => setSearchOpen(true)} aria-label={t("nav.search")}>
               <Search className="size-5" />
             </button>
-            <Link to="/wishlist" aria-label={t("nav.wishlist")} className="relative hidden sm:block">
+            <Link
+              to="/wishlist"
+              aria-label={t("nav.wishlist")}
+              className="relative hidden sm:block"
+            >
               <Heart className="size-5" />
               {wishlist.length > 0 && (
                 <span className="absolute -end-1.5 -top-1.5 grid size-4 place-items-center rounded-full bg-foreground text-[9px] text-primary-foreground">
@@ -130,7 +138,13 @@ export function SiteHeader() {
       {menuOpen && (
         <div className="animate-soft-in fixed inset-0 z-100 bg-background md:hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-4">
-            <img src={logo} alt="El Wafa Création" width={1024} height={1024} className="h-10 w-auto" />
+            <img
+              src={logo}
+              alt="El Wafa Création"
+              width={1024}
+              height={1024}
+              className="h-10 w-auto"
+            />
             <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close">
               <X className="size-5" />
             </button>

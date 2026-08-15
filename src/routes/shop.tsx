@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShopBrowser } from "@/components/ShopBrowser";
 import { useI18n } from "@/i18n";
+import { absoluteUrl, breadcrumbSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
@@ -16,6 +17,14 @@ export const Route = createFileRoute("/shop")({
         property: "og:description",
         content: "Toutes nos robes faites main, filtrables par taille, couleur et collection.",
       },
+      { property: "og:url", content: absoluteUrl("/shop") },
+    ],
+    links: [{ rel: "canonical", href: absoluteUrl("/shop") }],
+    scripts: [
+      breadcrumbSchema([
+        { name: "Accueil", path: "/" },
+        { name: "Boutique", path: "/shop" },
+      ]),
     ],
   }),
   component: ShopPage,

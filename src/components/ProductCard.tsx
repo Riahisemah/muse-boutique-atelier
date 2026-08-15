@@ -9,7 +9,13 @@ import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/types";
 
-export function ProductCard({ product, priority = false }: { product: Product; priority?: boolean }) {
+export function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
   const { t, tl } = useI18n();
   const { toggleWishlist, isWished, addToCart } = useStore();
   const [quickOpen, setQuickOpen] = useState(false);
@@ -57,13 +63,18 @@ export function ProductCard({ product, priority = false }: { product: Product; p
         </Link>
 
         <div className="pointer-events-none absolute start-3 top-3 flex flex-col items-start gap-1">
+          {product.bestseller && (
+            <span className="bg-gold/20 px-2.5 py-1 text-[10px] tracking-[0.18em] text-gold uppercase font-semibold">
+              ⭐ {t("product.bestseller")}
+            </span>
+          )}
           {product.newArrival && (
             <span className="bg-background/95 px-2.5 py-1 text-[10px] tracking-[0.18em] uppercase">
               {t("product.new")}
             </span>
           )}
           {discount !== null && (
-            <span className="bg-foreground px-2.5 py-1 text-[10px] tracking-[0.18em] text-primary-foreground uppercase">
+            <span className="bg-foreground px-2.5 py-1 text-[10px] tracking-[0.18em] text-primary-foreground uppercase font-semibold">
               -{discount}%
             </span>
           )}
@@ -117,9 +128,18 @@ export function ProductCard({ product, priority = false }: { product: Product; p
 
       <div className="pt-4">
         <Link to="/product/$slug" params={{ slug: product.slug }}>
-          <h3 className="text-lg leading-snug">{tl(product.name)}</h3>
+          <h3 className="text-lg leading-snug group-hover:text-gold transition-colors">
+            {tl(product.name)}
+          </h3>
         </Link>
-        <Price price={product.price} compareAt={product.compareAt} className="mt-1" />
+        <div className="mt-2 flex items-center justify-between">
+          <Price price={product.price} compareAt={product.compareAt} className="mt-1" />
+          {product.bestseller && (
+            <span className="text-[10px] font-semibold tracking-[0.12em] text-gold uppercase">
+              ⭐ Best
+            </span>
+          )}
+        </div>
       </div>
     </article>
   );
