@@ -130,7 +130,7 @@ export function SiteHeader() {
       {menuOpen && (
         <div className="animate-soft-in fixed inset-0 z-100 bg-background md:hidden">
           <div className="flex items-center justify-between border-b border-border px-4 py-4">
-            <span className="font-display text-xl tracking-[0.28em] uppercase">Noor</span>
+            <img src={logo} alt="El Wafa Création" width={1024} height={1024} className="h-10 w-auto" />
             <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close">
               <X className="size-5" />
             </button>
