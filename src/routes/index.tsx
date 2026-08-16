@@ -239,6 +239,7 @@ function Home() {
           title={t("home.best.title")}
           subtitle={t("home.best.subtitle")}
           viewAllTo="/shop"
+          index={3}
         />
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
           {bestSellers.map((p, i) => (
