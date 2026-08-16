@@ -156,6 +156,7 @@ function Home() {
         <SectionHeading
           eyebrow={t("home.categories.subtitle")}
           title={t("home.categories.title")}
+          index={1}
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CATEGORIES.map((c, i) => (
@@ -163,7 +164,7 @@ function Home() {
               <Link
                 to="/category/$slug"
                 params={{ slug: c.slug }}
-                className="group relative block overflow-hidden bg-secondary"
+                className="hover-lift group relative block overflow-hidden bg-secondary"
               >
                 <img
                   src={c.image}
@@ -190,6 +191,7 @@ function Home() {
           title={t("home.new.title")}
           subtitle={t("home.new.subtitle")}
           viewAllTo="/shop"
+          index={2}
         />
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
           {newArrivals.map((p, i) => (
