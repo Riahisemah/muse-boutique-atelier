@@ -15,7 +15,7 @@ export default defineConfig({
   nitro: {
     // Netlify: deploy as Netlify Functions (SSR). Overridable so the
     // Dockerfile can build the standalone node-server preset instead.
-    preset: process.env.NITRO_PRESET ?? "netlify",
+    preset: process.env['NITRO_PRESET'] ?? "netlify",
     // Serve pre-compressed gzip/brotli versions of static assets.
     compressPublicAssets: { gzip: true, brotli: true },
     routeRules: {
