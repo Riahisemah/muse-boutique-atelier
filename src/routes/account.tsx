@@ -38,7 +38,7 @@ function AccountPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/login"
-              className="bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase"
+              className="btn-sweep bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-colors hover:text-foreground"
             >
               {t("auth.login")}
             </Link>
@@ -55,7 +55,7 @@ function AccountPage() {
             <button
               type="button"
               onClick={() => toast.success(t("account.saved"))}
-              className="mt-6 bg-foreground px-6 py-3 text-[11px] tracking-[0.18em] text-primary-foreground uppercase"
+              className="btn-sweep mt-6 bg-foreground px-6 py-3 text-[11px] tracking-[0.18em] text-primary-foreground uppercase transition-colors hover:text-foreground"
             >
               {t("account.save")}
             </button>

@@ -301,7 +301,7 @@ function ProductPage() {
               type="button"
               onClick={() => add()}
               disabled={!size}
-              className="bg-foreground py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85 disabled:opacity-50"
+              className="btn-sweep bg-foreground py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase disabled:opacity-50 transition-colors hover:text-foreground"
             >
               ✓ {t("product.addToCart")}
             </button>

@@ -36,7 +36,7 @@ function CartPage() {
         <div className="mt-8 space-y-3">
           <Link
             to="/shop"
-            className="block bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase font-semibold"
+            className="btn-sweep block bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase font-semibold transition-colors hover:text-foreground"
           >
             🛍️ {t("cart.continue")}
           </Link>
@@ -163,7 +163,7 @@ function CartPage() {
           </div>
           <Link
             to="/checkout"
-            className="mt-6 block bg-foreground py-4 text-center text-[11px] tracking-[0.2em] text-primary-foreground uppercase"
+            className="btn-sweep mt-6 block bg-foreground py-4 text-center text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-colors hover:text-foreground"
           >
             {t("cart.checkout")}
           </Link>

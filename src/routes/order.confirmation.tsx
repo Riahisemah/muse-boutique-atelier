@@ -49,7 +49,7 @@ function OrderConfirmationPage() {
       <Link
         to="/shop"
         onClick={() => clearOrderReference()}
-        className="mt-10 inline-block bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase"
+        className="btn-sweep mt-10 inline-block bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-colors hover:text-foreground"
       >
         {t("cart.continue")}
       </Link>

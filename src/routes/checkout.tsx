@@ -372,7 +372,7 @@ function CheckoutPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase disabled:opacity-60 sm:w-auto"
+            className="btn-sweep w-full bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase disabled:opacity-60 sm:w-auto transition-colors hover:text-foreground"
           >
             {submitting ? t("checkout.submitting") : t("checkout.submit")}
           </button>

@@ -53,7 +53,7 @@ function ContactPage() {
         </label>
         <button
           type="submit"
-          className="bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase"
+          className="btn-sweep bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-colors hover:text-foreground"
         >
           {t("pages.contact.send")}
         </button>
