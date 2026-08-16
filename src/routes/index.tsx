@@ -3,6 +3,10 @@ import { Link2, Phone, RefreshCw, Sparkles } from "lucide-react";
 import { Newsletter } from "@/components/Newsletter";
 import { ProductCard } from "@/components/ProductCard";
 import { Reveal } from "@/components/Reveal";
+import { Marquee } from "@/components/motion/Marquee";
+import { SplitText } from "@/components/motion/SplitText";
+import { Parallax } from "@/components/motion/Parallax";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CATEGORIES, PRODUCTS } from "@/data/products";
 import { useI18n } from "@/i18n";
@@ -46,12 +50,12 @@ function Home() {
           <div className="flex items-center px-6 py-20 md:px-14 lg:px-20">
             <div className="max-w-lg">
               <p className="eyebrow animate-rise">{t("brand.tagline")}</p>
-              <h1
-                className="animate-rise mt-6 text-4xl leading-[1.05] sm:text-5xl lg:text-6xl"
-                style={{ animationDelay: "120ms" }}
-              >
-                {t("hero.title")}
-              </h1>
+              <SplitText
+                as="h1"
+                text={t("hero.title")}
+                delay={120}
+                className="mt-6 font-display text-4xl leading-[1.05] font-light sm:text-5xl lg:text-6xl"
+              />
               <p
                 className="animate-rise mt-6 max-w-sm text-sm leading-relaxed text-muted-foreground"
                 style={{ animationDelay: "240ms" }}
@@ -64,16 +68,18 @@ function Home() {
               >
                 <Link
                   to="/shop"
-                  className="bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-opacity hover:opacity-85 font-semibold"
+                  className="btn-sweep group inline-flex items-center gap-3 bg-foreground px-8 py-4 text-[11px] font-semibold tracking-[0.2em] text-primary-foreground uppercase transition-colors hover:text-foreground"
                 >
-                  🛍️ {t("hero.cta1")}
+                  {t("hero.cta1")}
+                  <ArrowRight className="arrow-slide size-3.5" />
                 </Link>
                 <Link
                   to="/shop"
                   search={{ sort: "new" }}
-                  className="border border-foreground px-8 py-4 text-[11px] tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground font-semibold"
+                  className="group inline-flex items-center gap-3 border border-foreground px-8 py-4 text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-primary-foreground"
                 >
-                  ✨ {t("hero.cta2")}
+                  {t("hero.cta2")}
+                  <ArrowRight className="arrow-slide size-3.5" />
                 </Link>
               </div>
             </div>
@@ -84,11 +90,29 @@ function Home() {
               alt={t("hero.title")}
               width={1600}
               height={1920}
-              className="h-[62vh] w-full object-cover object-top md:h-full md:min-h-[86vh]"
+              className="animate-ken-burns h-[62vh] w-full object-cover object-top will-change-transform md:h-full md:min-h-[86vh]"
             />
           </div>
         </div>
+        <ChevronDown
+          className="animate-scroll-hint absolute bottom-5 left-1/2 hidden size-4 -translate-x-1/2 text-gold md:block"
+          aria-hidden
+        />
       </section>
+
+      {/* Editorial ticker */}
+      <Marquee
+        items={[
+          "El Wafa Création",
+          "Tunis",
+          "Fait main",
+          "Série limitée",
+          "Paris",
+          "Milano",
+          "Sur mesure",
+          "Soie & dentelle",
+        ]}
+      />
 
       {/* Trust bar */}
       <section className="border-y border-border bg-background/50">
@@ -178,14 +202,16 @@ function Home() {
 
       {/* Promotional banner */}
       <section className="relative">
-        <img
-          src={promoImage}
-          alt={t("home.promo.title")}
-          width={1920}
-          height={1080}
-          loading="lazy"
-          className="h-[60vh] w-full object-cover"
-        />
+        <Parallax strength={50} className="h-[60vh]">
+          <img
+            src={promoImage}
+            alt={t("home.promo.title")}
+            width={1920}
+            height={1080}
+            loading="lazy"
+            className="h-[68vh] w-full -translate-y-[4vh] object-cover"
+          />
+        </Parallax>
         <div className="absolute inset-0 flex items-center bg-foreground/25">
           <div className="mx-auto w-full max-w-[1400px] px-6 md:px-8">
             <Reveal className="max-w-md text-primary-foreground">
