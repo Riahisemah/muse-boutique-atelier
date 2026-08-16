@@ -36,7 +36,7 @@ export function ProductCard({
 
   return (
     <article className="group relative">
-      <div className="relative overflow-hidden bg-secondary">
+      <div className="hover-lift relative overflow-hidden bg-secondary">
         <Link
           to="/product/$slug"
           params={{ slug: product.slug }}

@@ -13,17 +13,17 @@ interface SmtpConfig {
 }
 
 function getSmtpConfig(): SmtpConfig {
-  const user = process.env.SMTP_USER ?? "";
-  const from = process.env.SMTP_FROM_EMAIL ?? user;
+  const user = process.env['SMTP_USER'] ?? "";
+  const from = process.env['SMTP_FROM_EMAIL'] ?? user;
   return {
-    host: process.env.SMTP_HOST ?? "smtp.gmail.com",
-    port: Number(process.env.SMTP_PORT ?? "465"),
-    secure: (process.env.SMTP_SECURE ?? "true") === "true",
+    host: process.env['SMTP_HOST'] ?? "smtp.gmail.com",
+    port: Number(process.env['SMTP_PORT'] ?? "465"),
+    secure: (process.env['SMTP_SECURE'] ?? "true") === "true",
     user,
-    pass: process.env.SMTP_PASS ?? "",
+    pass: process.env['SMTP_PASS'] ?? "",
     from,
-    fromName: process.env.SMTP_FROM_NAME ?? "El Wafa Création",
-    receiverEmail: process.env.ORDER_RECEIVER_EMAIL ?? user,
+    fromName: process.env['SMTP_FROM_NAME'] ?? "El Wafa Création",
+    receiverEmail: process.env['ORDER_RECEIVER_EMAIL'] ?? user,
   };
 }
 

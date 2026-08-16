@@ -154,7 +154,7 @@ export function ProductReviews({ product }: { product: Product }) {
               </label>
               <button
                 type="submit"
-                className="bg-foreground px-8 py-3.5 text-[11px] tracking-[0.18em] text-primary-foreground uppercase"
+                className="btn-sweep bg-foreground px-8 py-3.5 text-[11px] tracking-[0.18em] text-primary-foreground uppercase transition-colors hover:text-foreground"
               >
                 {tx("reviews.submit")}
               </button>

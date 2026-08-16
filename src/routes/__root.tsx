@@ -20,6 +20,8 @@ import { SITE_URL, absoluteUrl, ldScript } from "@/lib/seo";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 function NotFoundComponent() {
   return (
@@ -156,10 +158,13 @@ function RootComponent() {
           <StoreProvider>
             <ReviewsProvider>
               <div className="flex min-h-screen flex-col">
+                <ScrollProgress />
                 <SiteHeader />
                 <main className="flex-1">
                   {/* Required: nested routes render here. */}
-                  <Outlet />
+                  <PageTransition>
+                    <Outlet />
+                  </PageTransition>
                 </main>
                 <SiteFooter />
               </div>

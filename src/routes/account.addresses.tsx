@@ -35,7 +35,7 @@ function AddressesPage() {
       <button
         type="button"
         onClick={() => toast.success(t("account.saved"))}
-        className="mt-8 bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase"
+        className="btn-sweep mt-8 bg-foreground px-8 py-4 text-[11px] tracking-[0.2em] text-primary-foreground uppercase transition-colors hover:text-foreground"
       >
         {t("account.addAddress")}
       </button>

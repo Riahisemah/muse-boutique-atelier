@@ -195,3 +195,197 @@
 @utility animate-soft-in {
   animation: soft-in 1.2s ease both;
 }
+
+/* ---------------------------------------------------------------
+ * Motion layer — editorial nocturne inspired micro-interactions.
+ * Every animation is disabled under prefers-reduced-motion.
+ * ------------------------------------------------------------- */
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(0, -1.5%, 0);
+  }
+}
+
+@keyframes gold-shimmer {
+  from {
+    background-position: -150% 0;
+  }
+  to {
+    background-position: 250% 0;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em) rotate(2deg);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee-x 38s linear infinite;
+}
+
+@utility animate-ken-burns {
+  animation: ken-burns 22s ease-in-out infinite alternate;
+}
+
+@utility animate-float-soft {
+  animation: float-soft 4.5s ease-in-out infinite;
+}
+
+@utility animate-page-in {
+  animation: page-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-scroll-hint {
+  animation: scroll-hint 2.2s ease-in-out infinite;
+}
+
+/* Uppercase label whose gold sheen sweeps across on hover. */
+@utility gold-sheen {
+  background-image: linear-gradient(
+    100deg,
+    transparent 20%,
+    color-mix(in oklab, var(--color-gold) 70%, transparent) 50%,
+    transparent 80%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  animation: gold-shimmer 3.6s ease-in-out infinite;
+}
+
+/* Filled button: fine gold line sweeps in from the leading edge. */
+@utility btn-sweep {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in oklab, var(--color-gold) 82%, transparent);
+    transform: translateX(-101%);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  &:hover::before,
+  &:focus-visible::before {
+    transform: translateX(0);
+  }
+}
+
+[dir="rtl"] .btn-sweep::before {
+  transform: translateX(101%);
+}
+
+/* Arrow that slides forward when its group is hovered. */
+@utility arrow-slide {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  .group:hover & {
+    transform: translateX(6px);
+  }
+}
+
+[dir="rtl"] .group:hover .arrow-slide {
+  transform: translateX(-6px) scaleX(-1);
+}
+
+[dir="rtl"] .arrow-slide {
+  transform: scaleX(-1);
+}
+
+/* Editorial section index number. */
+@utility section-index {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  color: color-mix(in oklab, var(--color-gold) 85%, var(--color-foreground));
+}
+
+@utility hover-lift {
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-gold) 35%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

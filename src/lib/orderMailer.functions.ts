@@ -4,12 +4,11 @@ import { sendOrderEmails } from "./orderMailer.server";
 import type { OrderRequest } from "./orderService";
 
 export const submitOrderEmail = createServerFn({ method: "POST" })
-  .handler(async ({ data }: { data: OrderRequest }) => {
-    console.log("[orderMailer] handler called, orderNumber:", data?.orderNumber);
-    if (!data || !data.orderNumber) {
-      console.error("[orderMailer] bad data:", data);
-      throw new Error("Invalid order data");
-    }
+  .inputValidator((data: OrderRequest) => {
+    if (!data || !data.orderNumber) throw new Error("Invalid order data");
+    return data;
+  })
+  .handler(async ({ data }) => {
     await sendOrderEmails(data);
-    return { ok: true };
+    return { ok: true as const };
   });

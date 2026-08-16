@@ -83,7 +83,7 @@ function AdminPage() {
             <button
               type="button"
               onClick={() => toast.success(t("admin.newProduct"))}
-              className="bg-foreground px-5 py-2.5 text-[11px] tracking-[0.16em] text-primary-foreground uppercase"
+              className="btn-sweep bg-foreground px-5 py-2.5 text-[11px] tracking-[0.16em] text-primary-foreground uppercase transition-colors hover:text-foreground"
             >
               {t("admin.newProduct")}
             </button>
